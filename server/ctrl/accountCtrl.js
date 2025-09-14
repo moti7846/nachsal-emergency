@@ -13,8 +13,7 @@ export const login = async (req, res) => {
         .status(403)
         .json({ msg: "Incorrect personal number or password" });
     const token = createToken(soldier);
-    res.cookies("token", token, { httpOnly: true });
-    return res.json(soldier);
+    return res.cookies("token", token, { httpOnly: true }).json(soldier);
   } catch (error) {
     console.log("login message error: ", error);
     return res.status(500).json({ msg: "Login failed." });
