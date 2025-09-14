@@ -8,4 +8,5 @@ const configRoutes = (app) => {
   app.use("/presence", presenceRoute);
 };
 
+
 export { configRoutes };
