@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import "./Login.css"
 
 export default function Login() {
 const [privateNumber, setprivateNumber] = useState("");
@@ -37,7 +39,7 @@ const [privateNumber, setprivateNumber] = useState("");
   }
   return (
     <>
-      <main>
+      <main className="page">
         <div className="login">
           <h1>התחברות</h1>
           <form onSubmit={handleSubmit}>
