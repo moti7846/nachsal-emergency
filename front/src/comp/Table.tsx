@@ -1,5 +1,5 @@
-import { useState } from "react"
-
+import { useEffect, useState } from "react"
+import "./table.css"
 type Report = {
     fullName: string,
     privateNumber: string,
@@ -10,17 +10,26 @@ type Report = {
 
 export default function Table() {
     const [data, setData] = useState<Report[]>([])
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const result = await getAll();
+    //         setData(result);
+    //     };
+    //     fetchData();
+    // }, []);
+    
     return (
-        <div className="table">
-            <h2>דו"ח נכס"ל</h2>
-            <table className="report">
+        <div className="table-container">
+            <h2 className="table-header">דו"ח נכס"ל</h2>
+            <table className="report-table">
                 <thead>
                     <tr>
-                        <th>תאריך עדכון</th>
-                        <th>מצב החייל</th>
-                        <th>מיקום</th>
-                        <th>מ.א</th>
                         <th>שם החייל</th>
+                        <th>מ.א</th>
+                        <th>מיקום</th>
+                        <th>מצב החייל</th>
+                        <th>תאריך עדכון</th>
                     </tr>
                 </thead>
                 <tbody>

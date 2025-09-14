@@ -1,3 +1,5 @@
+import "./Login.css"
+
 
 export default function Login() {
   async function handleSubmit(e: React.FormEvent) {
@@ -5,7 +7,7 @@ export default function Login() {
   }
   return (
     <>
-      <main>
+      <main className="page">
         <div className="login">
           <h1>Log in</h1>
           <form onSubmit={handleSubmit}>
