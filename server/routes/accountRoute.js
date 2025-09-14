@@ -1,12 +1,10 @@
-import express from "express";
-import { login, logout, changePassword } from "../ctrl/accountCtrl.js";
+// import express from "express";
+// import { login, logout, changePassword } from "../ctrl/accountCtrl.js";
 
-const soldiers = express.Router();
+// const soldiers = express.Router();
 
-soldiers.post('/changePassword', changePassword);
-soldiers.post('/login', login);
-soldiers.post('/logout', logout);
+// soldiers.post('/changePassword', changePassword);
+// soldiers.post('/login', login);
+// soldiers.post('/logout', logout);
 
-export {
-    soldiers
-}
+// export default soldiers
