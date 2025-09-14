@@ -1,7 +1,7 @@
-import { supabase } from "../db/supabaseDB.js";
+import supabase from "../db/connect.js";
 
 export const getSoldierByIdDB = async (id) => {
-    const { data, error } = await supabase.from("soldiers").select("*").eq("id", id).single();
+    const { data, error } = await supabase.from("soldiers").select("*").eq("personal_number", id).single();        
     if (error) {
         console.log(`getSoldierDB: ${error}`);
         return null;
@@ -27,8 +27,8 @@ export const addSoldierDB = async (obj) => {
     return data;
 }
 
-export const updateSoldierDB = async (name, password) => {
-    const { data, error } = await supabase.from("soldiers").update({ "password": password }).eq("name", name);
+export const updateSoldierDB = async (id, password) => {    
+    const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", id).select();
     if (error) {
         console.log(`updateSoldierDB: ${error}`);
         return null;
