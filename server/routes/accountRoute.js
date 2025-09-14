@@ -1,9 +1,9 @@
 import express from "express";
-import { login, logout, signup, UserVerification } from "../ctrl/accountCtrl.js";
+import { login, logout, changePassword } from "../ctrl/accountCtrl.js";
 
 const soldiers = express.Router();
 
-soldiers.post('/signup', signup);
+soldiers.post('/changePassword', changePassword);
 soldiers.post('/login', login);
 soldiers.post('/logout', logout);
 
