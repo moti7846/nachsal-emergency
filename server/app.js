@@ -3,12 +3,14 @@ import cors from "cors";
 import { configRoutes } from "./routes/configRoutes.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
+import logger from "./middelware/logger.js";
 config();
 
 const PORT = process.env.PORT;
 
 const app = express();
 app.use(express.json());
+app.use(logger);
 app.use(
   cors({
     credentials: true,
