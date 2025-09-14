@@ -4,8 +4,7 @@ import Login from "./Login";
 
 export default function Home() {
   return (
-    <>
-      <main>
+      <>
         {localStorage.getItem("isLoggedIn") === "true" ? (
           <>
             {localStorage.getItem("role") === "commend" ? (
@@ -16,11 +15,11 @@ export default function Home() {
           </>
         ) : (
           <>
-            <h1>התחברות למערכת</h1>
+            <h1>ברוכים הבאים למערכת נכס״ל</h1>
             <Login />
           </>
         )}
-      </main>
-    </>
+      </>
+
   );
 }

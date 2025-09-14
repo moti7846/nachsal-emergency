@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Table from "../comp/Table";
 
 export default function Comoned_page() {
   return (
