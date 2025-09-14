@@ -1,4 +1,4 @@
-import { supabase } from "../db/supabaseDB.js";
+import supabase  from "../db/connect.js";
 
 export const getSoldierByIdDB = async (id) => {
     const { data, error } = await supabase.from("soldiers").select("*").eq("id", id).single();

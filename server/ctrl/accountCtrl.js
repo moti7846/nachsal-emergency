@@ -1,4 +1,4 @@
-import { updateSoldierDB } from "../DAL/soldierDAL.js";
+import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
