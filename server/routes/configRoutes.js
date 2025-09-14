@@ -1,11 +1,12 @@
-import { soldiers } from "./accountRoute.js"
-import { presence } from "./presenceRoute.js"
+import soldiersRoute from "./accountRoute.js";
+import authRoute from "./authRoute.js";
+import presenceRoute from "./presenceRoute.js";
 
 const configRoutes = (app) => {
-    app.use('/auth', soldiers)
-    app.use('/presence', presence)
-}
+  app.use("/soldiers", soldiersRoute);
+  app.use("/auth", authRoute);
+  app.use("/presence", presenceRoute);
+};
 
-export {
-    configRoutes
-}
+
+export { configRoutes };
