@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
-
 export function createHashPassword(pass) {
   return bcrypt.hash(pass, 10);
 }
@@ -9,7 +8,6 @@ export function createHashPassword(pass) {
 export async function checkPasswordIsTrue(pass, hashPass) {
   return await bcrypt.compare(pass, hashPass);
 }
-
 
 export function createToken(soldier) {
     const token = jwt.sign(

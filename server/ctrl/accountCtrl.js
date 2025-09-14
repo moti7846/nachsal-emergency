@@ -1,5 +1,5 @@
 import { updateSoldierDB } from "../DAL/soldierDAL.js";
-import { checkPasswordIsTrue, createToken } from "../services/loginService.js";
+import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
     const privateNumber = req.body.privateNumber;
@@ -7,9 +7,10 @@ export const changePassword = async (req, res) => {
     if (!privateNumber || !password) {
         return res.status(403).json({ msg: "You must enter a personal number and password."})
     }
+    const hashPassword = createHashPassword(password);
     let response;
     try {
-        response = await updateSoldierDB(privateNumber, password);
+        response = await updateSoldierDB(privateNumber, hashPassword);
     }
     catch (err) {
         console.log(`updateSoldierDB: ${err.msg}`);
