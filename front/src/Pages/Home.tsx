@@ -1,11 +1,11 @@
 import Report_place from "../comp/Report_place";
 import Comoned_page from "./Comoned_page";
 import Login from "./Login";
+import "./Home.css"
 
 export default function Home() {
   return (
-    <>
-      <main>
+    <div className="page">
         {localStorage.getItem("isLoggedIn") === "true" ? (
           <>
             {localStorage.getItem("role") === "commend" ? (
@@ -20,7 +20,6 @@ export default function Home() {
             <Login />
           </>
         )}
-      </main>
-    </>
+    </div>
   );
 }
