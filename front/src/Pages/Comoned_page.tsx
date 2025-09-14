@@ -2,8 +2,6 @@ import { Link } from "react-router";
 import Table from "../comp/Table";
 import "./Comoned_page.css"
 
-
-
 export default function Comoned_page() {
   return (
     <>

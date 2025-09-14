@@ -1,9 +1,10 @@
-export default function Headbar() {
+ import "./Headbar.css"
+ export default function Headbar() {
   return (
     <>
-      <div>
-        <h2>מערכת נכס״ל צה״ל</h2>
-        <img src="" alt="לוגו של צהל" />
+      <div className="headbar">
+        <h2 className="slogen-idf">מערכת נכס״ל צה״ל</h2>
+        <img src="public/IDF.png" alt="לוגו של צהל"  className="logo-idf"/>
       </div>
     </>
   );
