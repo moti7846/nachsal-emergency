@@ -9,8 +9,7 @@ export async function getDirectSoldier(personalNumber: string) {
         method:"GET",
         credentials:"include",
     })
-    return result
-
+    return result.json()
 }
 
 
