@@ -7,26 +7,22 @@ import Headbar from "./comp/Headbar";
 import Comoned_page from "./Pages/Comoned_page";
 import "./App.css"
 
+
+export const URL = ""
+
+
+
 export default function App() {
   return (
-    <div className="app-flax">
-      <header className="headbar">
-        <Headbar />
-      </header>
-
-      <main className="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/report_soldier_place" element={<Report_soldier_place />} />
-          <Route path="/comoned" element={<Comoned_page />} />
-          <Route path="report_place" element={<Report_place />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </main>
-
-      <footer>
-        
-      </footer>
-    </div>
-  );
+    <>
+      <Headbar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/report_soldier_place" element={<Report_soldier_place />} />
+        <Route path="/comoned" element={<Comoned_page/>}/>
+        <Route path="report_place" element={ <Report_place/>} />
+        <Route path="/login" element={<Login />} />
+      </Routes> 
+    </>
+  )
 }
