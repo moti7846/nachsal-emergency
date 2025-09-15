@@ -5,7 +5,7 @@ import "./style/Home.css"
 
 export default function Home() {
   return (
-    <main >
+    < >
         {localStorage.getItem("isLoggedIn") === "true" ? (
           <>
             {localStorage.getItem("role") === "commend" ? (
@@ -16,10 +16,10 @@ export default function Home() {
           </>
         ) : (
           <>
-            <h1>ברוכים הבאים למערכת נכס״ל</h1>
+            {/* <h1>ברוכים הבאים למערכת נכס״ל</h1> */}
             <Login />
           </>
         )}
-    </main>
+    </>
   );
 }
