@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./table.css"
+import "./style/table.css"
 import { getDirectSoldier } from "../api"
 import { useNavigate } from "react-router"
 

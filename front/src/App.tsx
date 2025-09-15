@@ -32,7 +32,6 @@ export default function App() {
   useEffect(() => {
     checkAuth();
   }, []);
-
   return (
     <>
       <AuthContext.Provider value={{ soldier, setSoldier }}>
