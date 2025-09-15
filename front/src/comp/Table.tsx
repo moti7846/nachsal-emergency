@@ -18,32 +18,34 @@ export default function Table() {
     //     };
     //     fetchData();
     // }, []);
-    
+
     return (
-        <div className="table-container">
-            <h2 className="table-header">דו"ח נכס"ל</h2>
-            <table className="report-table">
-                <thead>
-                    <tr>
-                        <th>שם החייל</th>
-                        <th>מ.א</th>
-                        <th>מיקום</th>
-                        <th>מצב החייל</th>
-                        <th>תאריך עדכון</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((report, i) => (
-                        <tr key={i}>
-                            <td>{report.fullName}</td>
-                            <td>{report.privateNumber}</td>
-                            <td>{report.location}</td>
-                            <td>{report.status}</td>
-                            <td>{report.createAt}</td>
+        <>
+            <div className="table-container">
+                <h2 className="table-header">דו"ח נכס"ל</h2>
+                <table className="report-table">
+                    <thead>
+                        <tr>
+                            <th>שם החייל</th>
+                            <th>מ.א</th>
+                            <th>מיקום</th>
+                            <th>מצב החייל</th>
+                            <th>תאריך עדכון</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {data.map((report, i) => (
+                            <tr key={i}>
+                                <td>{report.fullName}</td>
+                                <td>{report.privateNumber}</td>
+                                <td>{report.location}</td>
+                                <td>{report.status}</td>
+                                <td>{report.createAt}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     )
 }
