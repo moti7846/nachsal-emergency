@@ -1,0 +1,9 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-columns: 5% 90% 5%;
+    overflow: scroll;
+    background-color: #4685b9ef;
+}

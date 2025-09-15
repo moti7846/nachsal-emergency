@@ -1,40 +1,78 @@
+
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./style/Login.css"
 
-
 export default function Login() {
+const [personalNumber, setPersonalNumber] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const nav = useNavigate();
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    try {
+      const res = await fetch("https://nachsal-emergency.onrender.com//auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ personal_number:privateNumber, password }),
+      });
+      console.log(res);
+      const result = await res.json();
+      console.log(result);
+
+      if (res.ok) {
+        setMessage("Login successful!");
+        localStorage.setItem("isLoggedIn", "true");
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
+        if (result.role === "commend") {
+          localStorage.setItem("role", "commend");
+          nav("/commend");
+        } else {
+          localStorage.setItem("role", "soldier");
+          nav("/report_place");
+        }
+      } else {
+        setMessage("Invalid name or password.");
+      }
+    } catch (err) {
+      setMessage("Network error: " + err);
+    }
   }
   return (
     <>
-      <main>
+      <main className="page">
         <div className="login">
-          <h1>Log in</h1>
+          <h1>התחברות</h1>
           <form onSubmit={handleSubmit}>
             <div>
               <input
                 type="string"
-                name="privateNumber"
-                placeholder="privet number"
-                value={""}
+                name="personalNumber"
+                placeholder="מספר אישי"
+                value={personalNumber}
                 required
-                onChange={(e) => (e.target.value)}
+                onChange={(e) => setPersonalNumber(e.target.value)}
               />
             </div>
             <div>
               <input
                 type="password"
                 name="password"
-                placeholder="password"
-                value={""}
+                placeholder="סיסמא"
+                value={password}
                 required
-                onChange={(e) => (e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit">login</button>
+            <button type="submit">כניסה</button>
           </form>
         </div>
       </main>
+      <p>{message}</p>
     </>
   );
 }
+
