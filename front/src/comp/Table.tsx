@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./table.css"
+import "./style/table.css"
 type Report = {
     fullName: string,
     privateNumber: string,
