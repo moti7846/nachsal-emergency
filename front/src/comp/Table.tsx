@@ -26,7 +26,6 @@ export default function Table({ personalNumber }: TypeProps) {
         };
         fetchData();
     }, []);
-
     return (
         <>
             <div className="table-container">
