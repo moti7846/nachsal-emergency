@@ -4,13 +4,10 @@ export default function Headbar() {
     <>
       <div className="headbar">
         <div>
-          
         </div>
-
           <h2 className="slogen-idf">מערכת נכס״ל צה״ל</h2>
           <img src="/IDF.png" alt="לוגו של צהל" className="logo-idf" />
         </div>
-      
     </>
   );
 }
