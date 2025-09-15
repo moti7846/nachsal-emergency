@@ -5,7 +5,7 @@ import "./style/Home.css"
 
 export default function Home() {
   return (
-    <div >
+    <main >
         {localStorage.getItem("isLoggedIn") === "true" ? (
           <>
             {localStorage.getItem("role") === "commend" ? (
@@ -20,6 +20,6 @@ export default function Home() {
             <Login />
           </>
         )}
-    </div>
+    </main>
   );
 }
