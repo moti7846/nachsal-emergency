@@ -1,27 +1,35 @@
 import { useEffect, useState } from "react"
 import "./style/table.css"
-type Report = {
+import { getDirectSoldier } from "../api"
+import { useNavigate } from "react-router"
+
+type TypeProps = {
+    personalNumber: string,
+}
+
+export type Report = {
     fullName: string,
-    privateNumber: string,
+    personalNumber: string,
     location: string,
     status: string,
     createAt: string
 }
 
-export default function Table() {
+export default function Table({ personalNumber }: TypeProps) {
     const [data, setData] = useState<Report[]>([])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const result = await getAll();
-    //         setData(result);
-    //     };
-    //     fetchData();
-    // }, []);
-
+    let navigate = useNavigate()
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getDirectSoldier(personalNumber);
+            setData(response);
+            // console.log(response);
+        };
+        fetchData();
+    }, []);
     return (
         <>
             <div className="table-container">
+                <button onClick={()=>console.log(data)}>log</button>
                 <h2 className="table-header">דו"ח נכס"ל</h2>
                 <table className="report-table">
                     <thead>
@@ -35,17 +43,17 @@ export default function Table() {
                     </thead>
                     <tbody>
                         {data.map((report, i) => (
-                            <tr key={i}>
-                                <td>{report.fullName}</td>
-                                <td>{report.privateNumber}</td>
-                                <td>{report.location}</td>
-                                <td>{report.status}</td>
-                                <td>{report.createAt}</td>
+                            <tr key={i} onClick={() => navigate("/Solider_page")}>
+                                <td>{report?.fullName}</td>
+                                <td>{report?.personalNumber}</td>
+                                <td>{report?.location}</td>
+                                <td>{report?.status}</td>
+                                <td>{report?.createAt}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div >
         </>
     )
 }
