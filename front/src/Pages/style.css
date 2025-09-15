@@ -1,0 +1,8 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #a8c66c;
+}
