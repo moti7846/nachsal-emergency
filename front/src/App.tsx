@@ -4,10 +4,10 @@ import Login from "./Pages/Login";
 import Report_place from "./comp/Report_place";
 import Headbar from "./comp/Headbar";
 import Comoned_page from "./Pages/Comoned_page";
-
-import "./App.css"
+import "./App.css";
 import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
+import Soldier_page from "./Pages/Soldier_page";
 
 export const URL = "http://localhost:3000";
 
@@ -26,8 +26,8 @@ export default function App() {
     } catch (err) {
       console.error("Auth check failed:", err);
       setSoldier(null);
-    };
-  }
+    }
+  };
 
   useEffect(() => {
     checkAuth();
@@ -43,9 +43,9 @@ export default function App() {
           <Route path="/comoned" element={<Comoned_page />} />
           <Route path="report_place" element={<Report_place />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/soldier_page" element={<Soldier_page />} />
         </Routes>
       </AuthContext.Provider>
-
     </>
-  )
+  );
 }

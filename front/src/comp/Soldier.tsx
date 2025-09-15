@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { type Report } from "./Table";
 import { getDirectSoldier } from "../api";
 
-export default function Solider() {
+export default function Soldier() {
     const { personalNumber } = useParams();
     const [report, setReport] = useState<Report>();
 
