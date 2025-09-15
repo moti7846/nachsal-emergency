@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./style/Report_soldier_place.css";
-import { config } from "dotenv";
-config()
+import "./reportSoldierPlace.css";
+// import { config } from "dotenv";
+// config()
 
 const API = import.meta.env.VITE_API_KEY
 
@@ -11,7 +11,7 @@ type DataForm = {
   location: string;
 };
 
-export default function Report_soldier_place() {
+export default function ReportSoldierPlace() {
   const [dataForm, setDataForm] = useState<DataForm>({
     status: "",
     location: "",
@@ -38,10 +38,10 @@ export default function Report_soldier_place() {
       alert("הדפדפן לא תומך ב-Geolocation");
     }
   };
-  const getAdders = async (url: string) => {
-    const res = await (await fetch(url)).json();
-    console.log(res.display_name);
-  };
+  // const getAdders = async (url: string) => {
+  //   const res = await (await fetch(url)).json();
+  //   console.log(res.display_name);
+  // };
   return (
     <>
       <div className="Report_soldier_place">

@@ -3,7 +3,7 @@ import supabase from "../db/connect.js";
 export const getSoldierByIdDB = async (personalNumber) => {
     const { data, error } = await supabase.from("soldiers").select("*").eq("personal_number", personalNumber).single();        
     if (error) {
-        console.log(`getSoldierDB: ${error}`);
+        console.log(`getSoldierByIdDB: ${error}`);
         return null;
     }
     return data;
