@@ -1,5 +1,5 @@
 import "./navTop.css";
-export default function NavTop() {
+export default function TopNav() {
   return (
     <>
       <div className="nav-top">

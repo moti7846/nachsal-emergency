@@ -1,7 +1,9 @@
 import "./reportPlace.css"
 
 export default function ReportPlace() {
-    return (<>
-        report_place
-    </>)
+    return (
+        <>
+            report_place
+        </>
+    )
 }
