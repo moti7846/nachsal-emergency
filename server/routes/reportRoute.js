@@ -4,7 +4,7 @@ import { getDirectSoldiers } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();
 
-// report.use(checkAuth);
+report.use(checkAuth);
 report.get("/:personalNumber", getDirectSoldiers);
 
 export default report;
