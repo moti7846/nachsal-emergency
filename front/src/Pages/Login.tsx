@@ -11,13 +11,16 @@ const [privateNumber, setprivateNumber] = useState("");
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/auth/login", {
+      const res = await fetch("https://nachsal-emergency.onrender.com//auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ privateNumber, password }),
+        body: JSON.stringify({ personal_number:privateNumber, password }),
       });
+      console.log(res);
       const result = await res.json();
-      if (result.success) {
+      console.log(result);
+
+      if (res.ok) {
         setMessage("Login successful!");
         localStorage.setItem("isLoggedIn", "true");
         setTimeout(() => {
