@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
 export const checkAuth = (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) return null;
+    const token = req.cookies.token;    
+    if (!token) return res.json(null);
     try {
         jwt.verify(token, process.env.JWT_SECRET);
     } catch (err) {
