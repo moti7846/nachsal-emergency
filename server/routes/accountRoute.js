@@ -7,6 +7,4 @@ soldiers.post('/changePassword', changePassword);
 soldiers.post('/login', login);
 soldiers.post('/logout', logout);
 
-export {
-    soldiers
-}
+export default soldiers
