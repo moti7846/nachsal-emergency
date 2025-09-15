@@ -1,9 +1,9 @@
 import express from "express";
 import { subscribe, getKey } from "../ctrl/pushCtrl.js";
 
-const vapid = express.Router();
+const push = express.Router();
 
-vapid.get("/key", getKey);
-vapid.post("/subscribe", subscribe);
+push.get("/key", getKey);
+push.post("/subscribe", subscribe);
 
-export default vapid;
+export default push;
