@@ -15,7 +15,7 @@ const [personalNumber, setPersonalNumber] = useState("");
       const res = await fetch("https://nachsal-emergency.onrender.com//auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ personal_number:privateNumber, password }),
+        body: JSON.stringify({ personal_number:personalNumber, password }),
       });
       console.log(res);
       const result = await res.json();
@@ -43,7 +43,7 @@ const [personalNumber, setPersonalNumber] = useState("");
   }
   return (
     <>
-      <main className="page">
+      <main>
         <div className="login">
           <h1>התחברות</h1>
           <form onSubmit={handleSubmit}>
