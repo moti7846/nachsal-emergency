@@ -2,14 +2,14 @@ import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
-    const { personal_number, newPassword } = req.body;    
-    if (!personal_number || !newPassword) {
+    const { personalNumber, newPassword } = req.body;    
+    if (!personalNumber || !newPassword) {
         return res.status(403).json({ msg: "You must enter a personal number and password."})
     }
     const hashPassword = await createHashPassword(newPassword);
     let response;
     try {
-        response = await updateSoldierDB(personal_number, hashPassword);
+        response = await updateSoldierDB(personalNumber, hashPassword);
     }
     catch (err) {
         console.log(`updateSoldierDB: ${err.msg}`);
@@ -23,8 +23,8 @@ export const changePassword = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { personal_number, password } = req.body;    
-    const soldier = await getSoldierByIdDB(personal_number);
+    const { personalNumber, password } = req.body;    
+    const soldier = await getSoldierByIdDB(personalNumber);
 
     if (!soldier)
       return res.status(403).json({ msg: "Personal number not found" });
