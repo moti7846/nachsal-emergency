@@ -39,7 +39,7 @@ export const updateSoldierDB = async (personalNumber, password) => {
 export const getDirectSoldiersDB = async (personalNumber) => {
     const { data, error } = await supabase.from("soldiers").select("*").eq("commander", personalNumber);        
     if (error) {
-        console.log(`getSoldierDB: ${error}`);
+        console.log(`getDirectSoldiersDB: ${error}`);
         return null;
     }
     return data;
