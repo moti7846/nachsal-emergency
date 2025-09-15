@@ -1,10 +1,11 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import "./Login.css"
+import "./style/Login.css"
 
 export default function Login() {
-const [privateNumber, setprivateNumber] = useState("");
+const [personalNumber, setPersonalNumber] = useState("");
+
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const nav = useNavigate();
@@ -49,11 +50,11 @@ const [privateNumber, setprivateNumber] = useState("");
             <div>
               <input
                 type="string"
-                name="privateNumber"
+                name="personalNumber"
                 placeholder="מספר אישי"
-                value={privateNumber}
+                value={personalNumber}
                 required
-                onChange={(e) => setprivateNumber(e.target.value)}
+                onChange={(e) => setPersonalNumber(e.target.value)}
               />
             </div>
             <div>
@@ -74,3 +75,4 @@ const [privateNumber, setprivateNumber] = useState("");
     </>
   );
 }
+
