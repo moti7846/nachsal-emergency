@@ -43,7 +43,7 @@ const [personalNumber, setPersonalNumber] = useState("");
   }
   return (
     <>
-      <main className="page">
+      <main>
         <div className="login">
           <h1>התחברות</h1>
           <form onSubmit={handleSubmit}>
