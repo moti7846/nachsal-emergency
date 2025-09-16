@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
-import { configRoutes } from "./routes/configRoutes.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import logger from "./middelware/logger.js";
-config();
+import { configRoutes } from "./routes/configRoutes.js";
+import errorHandler from "./middelware/errorHandler.js";
 
+config();
 
 const PORT = process.env.PORT;
 
@@ -27,6 +28,8 @@ configRoutes(app);
 app.use((req, res) => {
   res.status(404).send({ msg: "page is not defound." });
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Express server running on http://localhost:${PORT}`);
