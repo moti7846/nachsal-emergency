@@ -1,11 +1,14 @@
 import express from "express";
 import { checkAuth } from "../middelware/auth.js";
-import { getDirectSoldiers, getDirectSoldiersWithReports } from "../ctrl/reportCtrl.js";
+import { getDirectSoldiersWithReports, getSoldierDetails, SendNachsal } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();
 
+//בודק אם קיים טוקן תקין
 report.use(checkAuth);
-// report.get("/:personalNumber", getDirectSoldiers);
+
 report.get("/:personalNumber", getDirectSoldiersWithReports);
+report.get("/send_nachsal/:personalNumber", SendNachsal);
+report.get("/soldierDetails/:personalNumber", getSoldierDetails);
 
 export default report;

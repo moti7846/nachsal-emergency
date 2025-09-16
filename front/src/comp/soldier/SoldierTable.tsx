@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react"
 import "./table.css"
+import { useContext, useEffect, useState } from "react"
 import { getDirectSoldier } from "../../api"
 import { AuthContext } from "../../context/AuthContext"
 import Soldier from "../personalData/Soldier"
@@ -12,16 +12,6 @@ export type Report = {
     done: string;
     created_at: string;
 }
-
-// export type Report2 = {
-//     address: string;
-//     commander: number;
-//     name: string;
-//     password: string;
-//     personal_number: number;
-//     phone: string;
-//     role: string;
-// }
 
 export default function SoldierTable() {
     const auth = useContext(AuthContext);

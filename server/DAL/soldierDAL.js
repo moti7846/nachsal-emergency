@@ -61,3 +61,28 @@ export const getDirectSoldiersWithReportsDB = async (personalNumber) => {
     }));
     return newData;
 };
+
+export async function updateSoldierStatus({ soldierId, status, location }) {
+  // Build update object
+  const updates = {
+    status,
+    updated_at: new Date().toISOString()
+  };
+  if (location !== undefined) {
+    updates.location = location;
+  }
+
+  const { data, error } = await supabase
+    .from("soldiers")
+    .update(updates)
+    .eq("id", soldierId)
+    .select("id, status, location, updated_at")
+    .single();
+
+  if (error) {
+    const err = new Error(`soldierDAL.updateSoldierStatus: ${error.message}`);
+    err.status = 500;
+    throw err;
+  }
+  return data ?? { id: soldierId, ...updates };
+}

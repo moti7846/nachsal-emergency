@@ -52,6 +52,7 @@ import logger from "./middelware/logger.js";           // ✅ correct folder nam
 import errorHandler from "./middelware/errorHandler.js"; // ✅ correct folder name
 import { configRoutes } from "./routes/configRoutes.js";
 
+import { mapSoldiers } from "./services/mapSoldires.js";
 config();
 
 const PORT = process.env.PORT || 3000;
