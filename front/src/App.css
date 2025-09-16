@@ -1,20 +1,82 @@
+/* Global variables and animations */
 :root {
-    --color-bright: #e5ffdf;
-    --color-dark: #024d1c;
-    background-color: var(--color-bright);
+  --color-bright: #e5ffdf;
+  --color-dark: #024d1c;
+  --primary-gradient: linear-gradient(135deg, #024d1c 0%, #0d7a2e 50%, #15a33a 100%);
+  --secondary-gradient: linear-gradient(135deg, #15a33a 0%, #2dd55a 100%);
+  --success-gradient: linear-gradient(135deg, #0d7a2e 0%, #2dd55a 100%);
+  --error-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  --glass-bg: rgba(229, 255, 223, 0.2);
+  --glass-border: rgba(2, 77, 28, 0.3);
+  --shadow-light: 0 8px 32px rgba(2, 77, 28, 0.25);
+  --shadow-heavy: 0 15px 35px rgba(2, 77, 28, 0.4);
+  --border-radius: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--color-bright);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    direction: rtl;
+/* Animated background */
+body {
+  background: var(--color-bright);
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(2, 77, 28, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(21, 163, 58, 0.1) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 0%, rgba(13, 122, 46, 0.05) 50%, transparent 100%);
+  background-size: 400% 400%;
+  animation: subtleGlow 20s ease infinite;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* .app-flax {
-    width: 100vw;
-    height: 100vh;
-    display:flex ;
-    flex-direction: column;
-} */
+@keyframes subtleGlow {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* Global keyframe animations */
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes underlineExpand {
+  0%, 100% { width: 60%; }
+  50% { width: 80%; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes loaderSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes floatingGreen {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+  33% { transform: translateY(-20px) rotate(120deg); opacity: 1; }
+  66% { transform: translateY(20px) rotate(240deg); opacity: 0.9; }
+}
+
+@keyframes greenBorderGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Responsive design breakpoints */
+@media (max-width: 768px) {
+  body {
+    background-size: 300% 300%;
+  }
+}
