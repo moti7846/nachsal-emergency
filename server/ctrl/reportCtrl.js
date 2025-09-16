@@ -23,3 +23,15 @@ export const getDirectSoldiersWithReports = async (req, res) => {
     }
     res.json(response);
 }
+
+export const getSoldierDetails = async (req, res) => {
+    const personalNumber = req.params.personalNumber;
+    let response;
+    try {
+        response = await getSoldierByIdDB(personalNumber);
+    } catch (error) {
+        console.error(error);
+        return res.status(400).json({ msg: "The request failed." })
+    }
+    res.json(response);
+}

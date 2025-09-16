@@ -13,16 +13,6 @@ export type Report = {
     created_at: string;
 }
 
-// export type Report2 = {
-//     address: string;
-//     commander: number;
-//     name: string;
-//     password: string;
-//     personal_number: number;
-//     phone: string;
-//     role: string;
-// }
-
 export default function SoldierTable() {
     const auth = useContext(AuthContext);
     const [data, setData] = useState<Report[]>([])

@@ -7,5 +7,6 @@ const report = express.Router();
 report.use(checkAuth);
 // report.get("/:personalNumber", getDirectSoldiers);
 report.get("/:personalNumber", getDirectSoldiersWithReports);
+report.get("/soldierDetails/:personalNumber", getSoldierDetails);
 
 export default report;
