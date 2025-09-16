@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
-import "./login.css"
+import "./login.css";
 import { URL } from "../../App";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -11,7 +10,6 @@ export default function Login() {
   const [message, setMessage] = useState("");
   const [statusInput, setStatusInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,7 +21,7 @@ export default function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ personalNumber, password }),
-        credentials: "include"
+        credentials: "include",
       });
 
       const data = await res.json();
@@ -31,24 +29,21 @@ export default function Login() {
       if (data.personal_number) {
         setStatusInput("goodLogin");
         setMessage("התחברת בהצלחה!");
-        auth?.setSoldier({ "personalNumber": data.personal_number, "name": data.name, "role": data.role });
-        setTimeout(() => {
-        if (data.role === "commander") {
-          navigate("/commander");
-        } else {
-          navigate("/report_place");
-        }
-      }, 1500);
+        auth?.setSoldier({
+          personalNumber: data.personal_number,
+          name: data.name,
+          role: data.role,
+        });
       } else {
-      setMessage("מספר אישי או סיסמה שגויים.");
+        setMessage("מספר אישי או סיסמה שגויים.");
+        setStatusInput("errorLogin");
+      }
+    } catch (err) {
+      setIsLoading(false);
+      setMessage("שגיאת רשת. נסה שוב.");
       setStatusInput("errorLogin");
     }
-    } catch (err) {
-    setIsLoading(false);
-    setMessage("שגיאת רשת. נסה שוב.");
-    setStatusInput("errorLogin");
   }
-}
 
   return (
     <>
@@ -57,13 +52,33 @@ export default function Login() {
         <form className="form" onSubmit={handleSubmit}>
           {isLoading && <span className="loader-login"></span>}
           <h2 className="h2">התחברות</h2>
-          <input className="inputLogin" type="text" name="personalNumber" placeholder="מספר אישי" value={personalNumber} autoComplete="name" required onChange={(e) => setPersonalNumber(e.target.value)} />
-          <input className="inputLogin" type="password" name="password" placeholder="סיסמא" value={password} autoComplete="password" required onChange={(e) => setPassword(e.target.value)} /><br />
-          <button className="btnLogin" type="submit">כניסה</button>
+          <input
+            className="inputLogin"
+            type="text"
+            name="personalNumber"
+            placeholder="מספר אישי"
+            value={personalNumber}
+            autoComplete="name"
+            required
+            onChange={(e) => setPersonalNumber(e.target.value)}
+          />
+          <input
+            className="inputLogin"
+            type="password"
+            name="password"
+            placeholder="סיסמא"
+            value={password}
+            autoComplete="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <button className="btnLogin" type="submit">
+            כניסה
+          </button>
           <p className={statusInput}>{message}</p>
         </form>
       </div>
     </>
   );
 }
-
