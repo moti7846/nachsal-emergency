@@ -1,6 +1,6 @@
 import express from "express";
 import { checkAuth } from "../middelware/auth.js";
-import { getDirectSoldiers, getDirectSoldiersWithReports } from "../ctrl/reportCtrl.js";
+import { getDirectSoldiers, getDirectSoldiersWithReports, getSoldierDetails } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();
 
