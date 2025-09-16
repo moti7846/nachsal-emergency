@@ -80,3 +80,22 @@
     margin: 20px 0;
   }
 }
+
+@media (min-width: 769px) {
+    .table-container {
+        padding: 20px;
+    }
+
+    .table-container h2 {
+        font-size: 20px;
+    }
+
+    .report-table {
+        font-size: 16px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 12px 15px;
+    }
+}

@@ -44,3 +44,20 @@ export const getDirectSoldiersDB = async (personalNumber) => {
     }
     return data;
 }
+
+export const getDirectSoldiersWithReportsDB = async (personalNumber) => {
+    const { data, error } = await supabase.from("soldiers").select(`personal_number, name, report:report!inner (location, status, created_at, done)`).eq("commander", personalNumber);
+    if (error) {
+        console.log(`getDirectSoldiersWithReportsDB: ${error}`);
+        return null;
+    }
+        const newData = data.map(item => ({
+        personal_number: item.personal_number,
+        name: item.name,
+        location: item.report?.location,
+        status: item.report?.status,
+        created_at: item.report?.created_at,
+        done: item.report?.done
+    }));
+    return newData;
+};
