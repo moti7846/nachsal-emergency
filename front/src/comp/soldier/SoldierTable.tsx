@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import "./table.css"
 import { getDirectSoldier } from "../../api"
-import { useNavigate } from "react-router"
 import { AuthContext } from "../../context/AuthContext"
-import Soldier from "../personalData/Soldier"
+import Soldier, { type PersonalData ,type SoldierProps } from "../personalData/Soldier"
 
 export type Report = {
     fullName: string;
@@ -14,12 +13,13 @@ export type Report = {
 }
 
 
-
 export default function SoldierTable() {
     const auth = useContext(AuthContext);
     const [data, setData] = useState<Report[]>([])
-    // let navigate = useNavigate()
-    const content = <Soldier />
+    // const [personalDate, setPersonalDate] = useState<PersonalData>()
+    // const [togel,setTogel] = useState(false)
+    const [selectedSoldier, setSelectedSoldier] = useState<Report | null>(null);
+    // const content = <Soldier />
 
     const fetchData = async () => {
         let response;
@@ -27,16 +27,32 @@ export default function SoldierTable() {
             response = await getDirectSoldier(auth?.soldier?.personalNumber);
         }
         setData(response);
+        // setPersonalDate(response)
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    useEffect(()=>{
+        fetchData()
+    },[])
 
+      if (selectedSoldier) {
+        return (
+            <Soldier
+                personalNumber={{
+                    personalNumber: selectedSoldier.personalNumber,
+                    name: selectedSoldier.fullName,
+                    role: "לא ידוע", 
+                    commander: 0,
+                    address: "",
+                    phone: "",
+                }}
+                onBack={() => setSelectedSoldier(null)}
+            />
+        );
+    }
     return (
         <>
             {/* <button onClick={() => console.log(data)}>log</button> */}
-            {content}
+            {/* {content} */}
             <h2 className="table-header">דו"ח נכס"ל</h2>
             <table className="report-table">
                 <thead>
@@ -50,7 +66,7 @@ export default function SoldierTable() {
                 </thead>
                 <tbody>
                     {data.map((report,i) => (
-                        <tr key={i} onClick={() => content}>
+                        <tr key={i} onClick={() => setSelectedSoldier(report)}>
                             <td>{report.personalNumber}</td>
                             <td>{report.fullName}</td>
                             <td>{report.location}</td>

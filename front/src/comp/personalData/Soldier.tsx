@@ -12,7 +12,12 @@ export type PersonalData = {
     phone: string;
 }
 
-export default function Soldier() {
+export type SoldierProps = {
+    personalNumber: PersonalData;
+    onBack: () => void;
+};
+
+export default function Soldier({ personalNumber, onBack }: SoldierProps) {
     const auth = useContext(AuthContext);
     const [data, setData] = useState<PersonalData>()
 
@@ -26,11 +31,12 @@ export default function Soldier() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [personalNumber]);
 
     return (
         <div className="personalCard">
-            <h3 className="personal-name">{data?.name}</h3>
+            <button onClick={onBack}>← חזרה</button>
+            <h3 className="personalName">{data?.name}</h3>
             <p>מספר אישי: {data?.personalNumber}</p>
             <p>תפקיד: {data?.role}</p>
             <p>מפקד ישיר: {data?.commander}</p>
