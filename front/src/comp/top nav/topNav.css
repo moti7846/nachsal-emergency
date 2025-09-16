@@ -23,8 +23,11 @@
   padding: 0 20px;
 }
 
-.logo-idf:hover, .account-img:hover {
+.logo-idf:hover {
   transform: scale(1.5);
+}
+.account-img:hover {
+  transform: scale(1.2);
 }
 
 /* סיסמה/כותרת */
@@ -39,7 +42,7 @@
 
 /* לוגו חשבון */
 .account-img {
-  width: 55px;
+  width: 40px;
   height: auto;
   filter: drop-shadow(0 0 8px rgba(229, 255, 223, 0.6));
   transition: transform 0.3s ease;
