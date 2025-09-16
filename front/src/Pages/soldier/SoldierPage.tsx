@@ -3,7 +3,7 @@ import "./soldierPage.css"
 import SoldierTable from "../../comp/soldier/SoldierTable";
 import SoldierData from "../../comp/personalData/Soldier";
 
-export default function CommanderPage() {
+export default function SoldierPage() {
   return (
     <>
       <SoldierData/>
