@@ -16,7 +16,7 @@ export default function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(`${URL}/me`, { credentials: "include" });
+      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setSoldier(data);
