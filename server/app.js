@@ -4,6 +4,7 @@ import { configRoutes } from "./routes/configRoutes.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import logger from "./middelware/logger.js";
+import { mapSoldiers } from "./services/mapSoldires.js";
 config();
 
 
