@@ -1,4 +1,4 @@
-import { getDirectSoldiersDB, getDirectSoldiersWithReportsDB } from "../DAL/soldierDAL.js";
+import { getDirectSoldiersDB, getDirectSoldiersWithReportsDB, getSoldierByIdDB } from "../DAL/soldierDAL.js";
 import { mapSoldiers } from "../services/mapSoldires.js";
 
 
