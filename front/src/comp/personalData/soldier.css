@@ -1,7 +1,8 @@
 .personalCard {
-    background: #f5f0f0;
+    width: 87%;
+    background: var(--color-bright);
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 350px;
     margin: 15px auto;
@@ -19,12 +20,13 @@
     font-size: 1.4rem;
     margin-bottom: 12px;
     color: #2c3e50;
-    border-bottom: 2px solid #eee;
     padding-bottom: 6px;
 }
 
 .personalCard p {
     margin: 6px 0;
+    padding: 12px 0;
+    border-bottom: 2px solid rgb(87, 116, 45);
     font-size: 0.95rem;
     color: #444;
 }

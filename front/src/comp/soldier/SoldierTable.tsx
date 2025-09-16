@@ -33,7 +33,8 @@ export default function SoldierTable() {
             {data.length > 0 &&
                 <div>
                     <h2 className="table-header">דו"ח נכס"ל</h2>
-                    <table className="report-table">
+                    <div className="table-container">
+                        <table className="report-table">
                         <thead>
                             <tr>
                                 <th>מ.א</th>
@@ -57,6 +58,7 @@ export default function SoldierTable() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             }
         </>

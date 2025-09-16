@@ -32,11 +32,11 @@ export default function SoldierData() {
     return (
         <div className="personalCard">
             <h3 className="personalName">{data?.name}</h3>
-            <p>מספר אישי: {data?.personal_number}</p>
-            <p>תפקיד: {data?.role}</p>
-            <p>מפקד ישיר: {data?.commander}</p>
-            <p>כתובת: {data?.address}</p>
-            <p>טלפון: {data?.phone}</p>
+            <p><b>מספר אישי:</b> {data?.personal_number}</p>
+            <p><b>תפקיד:</b> {data?.role}</p>
+            <p><b>מפקד ישיר:</b> {data?.commander}</p>
+            <p><b>כתובת:</b> {data?.address}</p>
+            <p><b>טלפון:</b> {data?.phone}</p>
         </div>
     )
 }

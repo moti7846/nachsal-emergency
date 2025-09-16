@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
 // import Soldier_page from "./Pages/Soldier_page";
 import CommanderPage from "./Pages/soldier/SoldierPage";
-import ReportPlace from "./comp/report place/ReportPlace";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 
@@ -41,7 +40,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/report_soldier_place" element={<ReportSoldierPlace />} />
           <Route path="/commander" element={<CommanderPage />} />
-          <Route path="report_place" element={<ReportPlace />} />
+          <Route path="report_place" element={<ReportSoldierPlace />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/soldier_page" element={<Soldier_page />} /> */}
         </Routes>
