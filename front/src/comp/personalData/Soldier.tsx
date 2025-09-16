@@ -4,7 +4,7 @@ import { getDirectSoldier } from "../../api";
 import "./soldier.css"
 
 export type PersonalData = {
-    personalNumber: number;
+    personal_number: number;
     name: string;
     role: string;
     commander: number;
@@ -12,12 +12,8 @@ export type PersonalData = {
     phone: string;
 }
 
-export type SoldierProps = {
-    personalNumber: PersonalData;
-    onBack: () => void;
-};
 
-export default function Soldier({ personalNumber, onBack }: SoldierProps) {
+export default function SoldierData() {
     const auth = useContext(AuthContext);
     const [data, setData] = useState<PersonalData>()
 
@@ -31,13 +27,12 @@ export default function Soldier({ personalNumber, onBack }: SoldierProps) {
 
     useEffect(() => {
         fetchData();
-    }, [personalNumber]);
+    }, []);
 
     return (
         <div className="personalCard">
-            <button onClick={onBack}>← חזרה</button>
             <h3 className="personalName">{data?.name}</h3>
-            <p>מספר אישי: {data?.personalNumber}</p>
+            <p>מספר אישי: {data?.personal_number}</p>
             <p>תפקיד: {data?.role}</p>
             <p>מפקד ישיר: {data?.commander}</p>
             <p>כתובת: {data?.address}</p>
