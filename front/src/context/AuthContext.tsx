@@ -10,4 +10,5 @@ type Auth = {
   soldier: Soldier | null;
   setSoldier: React.Dispatch<React.SetStateAction<Soldier | null>>;
 };
+
 export const AuthContext = createContext<Auth | null>(null);

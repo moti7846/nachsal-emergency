@@ -16,3 +16,11 @@ export async function getSoldierDetails(personalNumber: number) {
     return result.json()
 }
 
+export async function logout() {
+    const result = await fetch(`${URL}/auth/logout`, {
+        method: "GET",
+        credentials: "include",
+    })
+    return result.json()
+}
+

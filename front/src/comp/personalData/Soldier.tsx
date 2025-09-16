@@ -1,33 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getDirectSoldier } from "../../api";
-import "./soldier.css"
+import "./soldier.css";
 
 export type PersonalData = {
-    personal_number: number;
-    name: string;
-    role: string;
-    commander: number;
-    address: string;
-    phone: string;
-}
-
+  personal_number: number;
+  name: string;
+  role: string;
+  commander: number;
+  address: string;
+  phone: string;
+};
 
 export default function SoldierData() {
-    const auth = useContext(AuthContext);
-    const [data, setData] = useState<PersonalData>()
+  const auth = useContext(AuthContext);
+  const [data, setData] = useState<PersonalData>();
 
-    const fetchData = async () => {
-        let response;
-        if (auth?.soldier) {
-            response = await getDirectSoldier(auth?.soldier?.personalNumber);
-        }
-        setData(response);
-    };
+  const fetchData = async () => {
+    let response;
+    if (auth?.soldier) {
+      response = await getDirectSoldier(auth?.soldier?.personalNumber);
+    }
+    setData(response);
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
     return (
         <div className="personalCard">
