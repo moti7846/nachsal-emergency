@@ -1,13 +1,8 @@
-// services/alertsService.js
 import * as alertsDAL from "../DAL/alertsDAL.js";
 import * as pushSubDAL from "../DAL/pushSubDAL.js";
 import * as pushJobsDAL from "../DAL/pushJobsDAL.js";
 import { preparePayload } from "./pushService.js";
 
-/**
- * Create an alert and enqueue jobs for all active push subscriptions.
- * Returns { alertId, subsCount, jobsCreated }.
- */
 export async function createAlertAndEnqueueJobs({ title, body, url, createdBy }) {
   // Basic validation
   if (!title || !body) {
@@ -37,10 +32,6 @@ export async function createAlertAndEnqueueJobs({ title, body, url, createdBy })
   return { alertId, subsCount, jobsCreated };
 }
 
-/**
- * Get aggregated delivery metrics for a given alert.
- * Pass-through to DAL (e.g., pending/sent/failed/disabled).
- */
 export async function getMetrics(alertId) {
   if (!alertId) {
     const err = new Error("alertId is required");
