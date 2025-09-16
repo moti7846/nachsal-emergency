@@ -44,7 +44,6 @@ export default function Table() {
     return (
         <div className="aaa">
             <h2 className="table-header">דו"ח נכס"ל</h2>
-            <div className="divTable">
                 <table className="report-table">
                     <thead>
                         <tr>
@@ -70,6 +69,5 @@ export default function Table() {
                     </tbody>
                 </table>
             </div>
-        </div>
     )
 }
