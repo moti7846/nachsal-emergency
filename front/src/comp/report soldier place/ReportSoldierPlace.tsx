@@ -1,80 +1,135 @@
+// ReportSoldierPlace.tsx
 import { useState } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
 import "./reportSoldierPlace.css";
-// import { config } from "dotenv";
-// config()
 
-const API = import.meta.env.VITE_API_KEY
+const API = "AIzaSyAt8qf1gUfAzXPOvKASVGfDM8gWnDF74dc"; // מפתח גוגל בלבד
 
-
-type DataForm = {
-  status: string;
-  location: string;
-};
+type DataForm = { status: string; location: string };
 
 export default function ReportSoldierPlace() {
   const [dataForm, setDataForm] = useState<DataForm>({
     status: "",
     location: "",
   });
-  const getLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // כאן יש לך את הקואורדינטות
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-          console.log(API)
-        //   getAdders(
-        //     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${API}`
-        //     // `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
-        //   );
-        },
-        (error) => {
-          console.error("שגיאה בקבלת מיקום:", error);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // reverse geocoding באמצעות Maps JavaScript API
+  const geocodeLatLng = async (lat: number, lng: number) => {
+    const loader = new Loader({
+      apiKey: API,
+      libraries: [],
+      language: "he",
+      region: "IL",
+    });
+
+    const google = await loader.load();
+    const geocoder = new google.maps.Geocoder();
+
+    return new Promise<string>((resolve, reject) => {
+      geocoder.geocode(
+        { location: { lat, lng } },
+        (
+          results: Array<typeof google.maps.GeocoderResult> | null,
+          status: string
+        ) => {
+          if (status === "OK" && results?.[0]) {
+            resolve(results[0].formatted_address);
+          } else {
+            reject(status);
+          }
         }
       );
-    } else {
-      alert("הדפדפן לא תומך ב-Geolocation");
-    }
+    });
   };
-  // const getAdders = async (url: string) => {
-  //   const res = await (await fetch(url)).json();
-  //   console.log(res.display_name);
-  // };
+
+  const getLocation = () => {
+    setErrorMsg("");
+    if (!("geolocation" in navigator)) {
+      setErrorMsg("הדפדפן לא תומך ב-Geolocation");
+      return;
+    }
+    setLoading(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const { latitude, longitude } = pos.coords;
+          const addr = await geocodeLatLng(latitude, longitude);
+          setDataForm((prev) => ({
+            ...prev,
+            location: addr || "לא נמצאה כתובת",
+          }));
+        } catch (e: any) {
+          setErrorMsg("שגיאה מה-Geocoder: " + String(e));
+        } finally {
+          setLoading(false);
+        }
+      },
+      (err) => {
+        const map: Record<number, string> = {
+          1: "הרשאת מיקום נדחתה",
+          2: "המיקום לא זמין כרגע",
+          3: "תם הזמן לאיתור מיקום",
+        };
+        setErrorMsg(map[err.code] || "שגיאה בקבלת מיקום");
+        setLoading(false);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //פונקציית api;
+  };
+
   return (
-    <>
-      <div className="Report_soldier_place">
-        <div className="form-nachsal">
-          <div className="tile">
-            <h1>שלום (שם חייל)</h1>
-            <p>נא הכנס בדחיפות את מיקומך ומצבך</p>
-          </div>
-          <input
-            className="status"
-            type="text"
-            placeholder="סטטוס"
-            value={dataForm.status}
-            onChange={(e) =>
-              setDataForm({ ...dataForm, status: e.target.value })
-            }
-          />
-          <input
-            className="input-local"
-            type="text"
-            placeholder="מיקום"
-            value={dataForm.location}
-            onChange={(e) =>
-              setDataForm({ ...dataForm, location: e.target.value })
-            }
-          />
-          <div className="localtion">
-            <div className="btn-local" onClick={getLocation}>
-              שלח מיקום
-            </div>
-          </div>
+    <div className="Report_soldier_place">
+      <form className="form-nachsal" onSubmit={handleSubmit}>
+        <div className="tile">
+          <h1>שלום -שם חייל-</h1>
+          <p>עדכן את מיקומך ומצבך</p>
         </div>
-      </div>
-    </>
+
+        <input
+          className="status"
+          type="text"
+          placeholder="סטטוס"
+          value={dataForm.status}
+          onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })}
+          required
+        />
+
+        <input
+          className="input-local"
+          type="text"
+          placeholder="מיקום"
+          value={dataForm.location}
+          onChange={(e) =>
+            setDataForm({ ...dataForm, location: e.target.value })
+          }
+          required
+        />
+
+        <div className="localtion">
+          <button
+            className="btn-local"
+            type="button"
+            onClick={getLocation}
+            disabled={loading}
+          >
+            {loading ? "מאתר מיקום..." : "מיקום נוכחי"}
+          </button>
+        </div>
+
+        <button className="btn-report" type="submit">
+          דיווח
+        </button>
+
+        {errorMsg && <div className="error">{errorMsg}</div>}
+      </form>
+    </div>
   );
 }
