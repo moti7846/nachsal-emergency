@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router";
 import Home from "./Pages/home/Home";
 import Login from "./Pages/login/Login";
-import Headbar from "./comp/nav top/NavTop";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
@@ -9,6 +8,7 @@ import Soldier_page from "./Pages/Soldier_page";
 import CommanderPage from "./Pages/commander page/CommanderPage";
 import ReportPlace from "./comp/report place/ReportPlace";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
+import TopNav from "./comp/top nav/TopNav";
 
 export const URL = "http://localhost:3000";
 
@@ -17,7 +17,7 @@ export default function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(`${URL}/me`, { credentials: "include" });
+      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setSoldier(data);
@@ -36,7 +36,7 @@ export default function App() {
   return (
     <>
       <AuthContext.Provider value={{ soldier, setSoldier }}>
-        <Headbar />
+        <TopNav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/report_soldier_place" element={<ReportSoldierPlace />} />
