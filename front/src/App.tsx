@@ -1,30 +1,23 @@
 import { Route, Routes } from "react-router";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Report_place from "./comp/Report_place";
-import Report_soldier_place from "./comp/Report_soldier_place";
-import Headbar from "./comp/Headbar";
-import Comoned_page from "./Pages/Comoned_page";
-import "./App.css"
+import Home from "./Pages/home/Home";
+import Login from "./Pages/login/Login";
+import "./App.css";
 import { useEffect, useState } from "react";
-import { AuthContext, type Soldier } from "./context/authContext";
+import { AuthContext, type Soldier } from "./context/AuthContext";
+import Soldier_page from "./Pages/Soldier_page";
+import CommanderPage from "./Pages/commander page/CommanderPage";
+import ReportPlace from "./comp/report place/ReportPlace";
+import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
+import TopNav from "./comp/top nav/TopNav";
 
 export const URL = "http://localhost:3000";
-
-import { Route, Routes } from "react-router";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Report_place from "./comp/Report_place";
-import Report_soldier_place from "./comp/Report_soldier_place";
-import Headbar from "./comp/Headbar";
-import Comoned_page from "./Pages/Comoned_page";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(`${URL}/me`, { credentials: "include" });
+      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setSoldier(data);
@@ -34,26 +27,25 @@ export default function App() {
     } catch (err) {
       console.error("Auth check failed:", err);
       setSoldier(null);
-    };
-  }
+    }
+  };
 
   useEffect(() => {
     checkAuth();
   }, []);
-
   return (
     <>
       <AuthContext.Provider value={{ soldier, setSoldier }}>
-        <Headbar />
+        <TopNav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/report_soldier_place" element={<Report_soldier_place />} />
-          <Route path="/comoned" element={<Comoned_page />} />
-          <Route path="report_place" element={<Report_place />} />
+          <Route path="/report_soldier_place" element={<ReportSoldierPlace />} />
+          <Route path="/commander" element={<CommanderPage />} />
+          <Route path="report_place" element={<ReportPlace />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/soldier_page" element={<Soldier_page />} />
         </Routes>
       </AuthContext.Provider>
-
     </>
-  )
+  );
 }

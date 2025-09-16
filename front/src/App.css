@@ -1,7 +1,20 @@
-.app-flax {
+:root {
+    --color-bright: #e5ffdf;
+    --color-dark: #024d1c;
+    background-color: var(--color-bright);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    direction: rtl;
+}
+
+/* .app-flax {
     width: 100vw;
     height: 100vh;
     display:flex ;
     flex-direction: column;
-    /* overflow: auto;  */
-}
+} */
