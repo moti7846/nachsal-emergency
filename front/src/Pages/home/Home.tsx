@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Report_place from "../../comp/report place/ReportPlace";
-import Comoned_page from "../commander page/CommanderPage";
+import Comoned_page from "../soldier/SoldierPage";
 import Login from "../login/Login";
 import { AuthContext } from "../../context/AuthContext";
 import "./home.css"
