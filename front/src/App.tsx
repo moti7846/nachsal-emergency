@@ -7,6 +7,7 @@ import { AuthContext, type Soldier } from "./context/AuthContext";
 import ReportPlace from "./comp/report place/ReportPlace";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
+import Logout from "./Pages/logout/Logout";
 
 export const URL = "http://localhost:3000";
 
@@ -45,6 +46,7 @@ export default function App() {
           />
           <Route path="report_place" element={<ReportPlace />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           {/* <Route path="/soldier_page" element={<Soldier_page />} /> */}
         </Routes>
       </AuthContext.Provider>
