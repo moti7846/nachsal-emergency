@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./topNav.css";
 export default function TopNav() {
   return (
@@ -5,7 +6,7 @@ export default function TopNav() {
       <div className="nav-top">
         <img src="/IDF.png" alt="לוגו של צהל" className="logo-idf" />
         <h2 className="slogen-idf">מערכת נכס"ל צה"ל</h2>
-        <div className="logo-idf"></div>
+        <Link to={'logout'}><img className="account-img" src="account.png" alt="אייקון חשבון" /></Link>
       </div>
     </>
   );
