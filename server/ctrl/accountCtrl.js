@@ -17,7 +17,7 @@ export const changePassword = async (req, res) => {
     return res.status(500).json({ msg: "Password change failed." })
   }
   if (!response) {
-    return res.status(500).json({ msg: "User not found." })
+    return res.status(500).json({ msg: "Soldier not found." })
   }
   res.json({ msg: "The update was successful!" })
 }
@@ -26,7 +26,6 @@ export const login = async (req, res) => {
   try {
     const { personalNumber, password } = req.body;
     const soldier = await getSoldierByIdDB(personalNumber);
-    
     if (!soldier)
       return res.status(403).json({ msg: "Personal number not found" });
     const isValidPassword = checkPasswordIsTrue(password, soldier.password);
@@ -47,13 +46,11 @@ export const logout = (req, res) => {
 export const soldierVerification = (req, res) => {
   const token = req.cookies.token;  
   if (!token) return res.json(null);
-  // console.log(token);  
   try {
     const response = jwt.verify(token, process.env.JWT_SECRET);
     res.json(response);
   } catch (err) {
-    // res.clearCookie("token");
     console.error("Token verification failed:", err.message);
-    return res.json(null);
+    return res.clearCookie("token").json(null);
   }
 }

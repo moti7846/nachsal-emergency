@@ -1,9 +1,9 @@
-import Solider from "../comp/Soldier";
+import Soldier from "../comp/Soldier";
 
 export default function Soldier_page() {
   return (
     <div>
-        <Solider />
+        <Soldier />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export type Soldier = {
-  personalNumber: string;
+  personalNumber: number;
   name: string;
   role: string;
 };
