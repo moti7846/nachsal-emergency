@@ -9,7 +9,7 @@ export default function SoldierPage() {
       <SoldierData/>
       <SoldierTable />
       <div className="ReportsLinks">
-        <Link to="/report_place"><button className="btnReport">טופס נכס"ל</button></Link>
+        <Link to="/report_soldier_place"><button className="btnReport">טופס נכס"ל</button></Link>
       </div>
     </>
   );
