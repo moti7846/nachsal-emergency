@@ -3,29 +3,23 @@ import "./table.css"
 import { getDirectSoldier } from "../../api"
 import { useNavigate } from "react-router"
 import { AuthContext } from "../../context/AuthContext"
+import Soldier from "../personalData/Soldier"
 
 export type Report = {
-    fullName: string,
-    personalNumber: number,
-    location: string,
-    status: string,
-    createAt: string
+    fullName: string;
+    personalNumber: number;
+    location: string;
+    status: string;
+    createAt: string;
 }
 
-export type Report2 = {
-    address: string;
-    commander: number;
-    name: string;
-    password: string;
-    personal_number: number;
-    phone: string;
-    role: string;
-}
 
-export default function Table() {
+
+export default function SoldierTable() {
     const auth = useContext(AuthContext);
-    const [data, setData] = useState<Report2[]>([])
-    let navigate = useNavigate()
+    const [data, setData] = useState<Report[]>([])
+    // let navigate = useNavigate()
+    const content = <Soldier />
 
     const fetchData = async () => {
         let response;
@@ -38,14 +32,11 @@ export default function Table() {
     useEffect(() => {
         fetchData();
     }, []);
-    useEffect(() => {
-        setData(data)
-        console.log("sss", data);
 
-    }, [data])
     return (
         <>
             {/* <button onClick={() => console.log(data)}>log</button> */}
+            {content}
             <h2 className="table-header">דו"ח נכס"ל</h2>
             <table className="report-table">
                 <thead>
@@ -58,13 +49,13 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((report) => (
-                        <tr key={report.personal_number} onClick={() => navigate("/Solider_page")}>
-                            <td>{report.personal_number}</td>
-                            <td>{report.name}</td>
-                            <td>{report.address}</td>
-                            <td>{report.phone}</td>
-                            <td>{report.role}</td>
+                    {data.map((report,i) => (
+                        <tr key={i} onClick={() => content}>
+                            <td>{report.personalNumber}</td>
+                            <td>{report.fullName}</td>
+                            <td>{report.location}</td>
+                            <td>{report.status}</td>
+                            <td>{report.createAt}</td>
                         </tr>
                     ))}
                 </tbody>

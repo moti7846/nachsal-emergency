@@ -1,0 +1,30 @@
+.personalCard {
+    background: #f5f0f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 350px;
+    margin: 15px auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.3;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.personalCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.personal-name {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+}
+
+.personalCard p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: #444;
+}
