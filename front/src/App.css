@@ -17,6 +17,7 @@
 
 /* Animated background */
 body {
+  direction: rtl;
   background: var(--color-bright);
   background-image: 
     radial-gradient(circle at 25% 25%, rgba(2, 77, 28, 0.1) 0%, transparent 50%),
