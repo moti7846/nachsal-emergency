@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react"
 import "./table.css"
+import { useContext, useEffect, useState } from "react"
 import { getDirectSoldier } from "../../api"
 import { AuthContext } from "../../context/AuthContext"
 import Soldier from "../personalData/Soldier"
