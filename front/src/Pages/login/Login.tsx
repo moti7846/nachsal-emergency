@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import "./login.css"
 import { URL } from "../../App";
-import { AuthContext, type Soldier } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -51,8 +51,8 @@ export default function Login() {
         <h1 className="h1">ברוכים הבאים למערכת נכס"ל</h1>
         <h2 className="h2">התחברות</h2>
         <form className="form" onSubmit={handleSubmit}>
-          <input className="inputLogin" type="text" name="personalNumber" placeholder="מספר אישי" value={personalNumber} required onChange={(e) => setPersonalNumber(e.target.value)} />
-          <input className="inputLogin" type="password" name="password" placeholder="סיסמא" value={password} required onChange={(e) => setPassword(e.target.value)} />
+          <input className="inputLogin" type="text" name="personalNumber" placeholder="מספר אישי" value={personalNumber} autoComplete="name" required onChange={(e) => setPersonalNumber(e.target.value)} />
+          <input className="inputLogin" type="password" name="password" placeholder="סיסמא" value={password} autoComplete="password" required onChange={(e) => setPassword(e.target.value)} />
           <button className="btnLogin" type="submit">כניסה</button>
           <p className={statusInput}>{message}</p>
         </form>

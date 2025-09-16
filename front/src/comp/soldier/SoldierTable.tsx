@@ -5,13 +5,23 @@ import { AuthContext } from "../../context/AuthContext"
 import Soldier, { type PersonalData ,type SoldierProps } from "../personalData/Soldier"
 
 export type Report = {
-    fullName: string;
-    personalNumber: number;
+    personal_number: number;
+    name: string;
     location: string;
     status: string;
-    createAt: string;
+    done: string;
+    created_at: string;
 }
 
+// export type Report2 = {
+//     address: string;
+//     commander: number;
+//     name: string;
+//     password: string;
+//     personal_number: number;
+//     phone: string;
+//     role: string;
+// }
 
 export default function SoldierTable() {
     const auth = useContext(AuthContext);
@@ -27,7 +37,6 @@ export default function SoldierTable() {
             response = await getDirectSoldier(auth?.soldier?.personalNumber);
         }
         setData(response);
-        // setPersonalDate(response)
     };
 
     useEffect(()=>{
@@ -35,11 +44,12 @@ export default function SoldierTable() {
     },[])
 
       if (selectedSoldier) {
+        
         return (
             <Soldier
                 personalNumber={{
-                    personalNumber: selectedSoldier.personalNumber,
-                    name: selectedSoldier.fullName,
+                    personalNumber: selectedSoldier.personal_number,
+                    name: selectedSoldier.name,
                     role: "לא ידוע", 
                     commander: 0,
                     address: "",
@@ -61,17 +71,19 @@ export default function SoldierTable() {
                         <th>שם החייל</th>
                         <th>מיקום</th>
                         <th>מצב החייל</th>
+                        <th>בוצע</th>
                         <th>תאריך עדכון</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((report,i) => (
                         <tr key={i} onClick={() => setSelectedSoldier(report)}>
-                            <td>{report.personalNumber}</td>
-                            <td>{report.fullName}</td>
+                            <td>{report.personal_number}</td>
+                            <td>{report.name}</td>
                             <td>{report.location}</td>
                             <td>{report.status}</td>
-                            <td>{report.createAt}</td>
+                            <td>{report.done}</td>
+                            <td>{report.created_at}</td>
                         </tr>
                     ))}
                 </tbody>
