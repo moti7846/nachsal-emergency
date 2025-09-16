@@ -1,4 +1,4 @@
-import Soldier from "../comp/Soldier";
+import Soldier from "../comp/personalData/Soldier";
 
 export default function Soldier_page() {
   return (
