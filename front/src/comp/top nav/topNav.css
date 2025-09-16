@@ -23,7 +23,7 @@
   padding: 0 20px;
 }
 
-.logo-idf:hover {
+.logo-idf:hover, .account-img:hover {
   transform: scale(1.5);
 }
 
@@ -35,6 +35,15 @@
   color: white;
   text-align: center;
   filter: drop-shadow(0 0 8px rgba(229, 255, 223, 0.6));
+}
+
+/* לוגו חשבון */
+.account-img {
+  width: 55px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(229, 255, 223, 0.6));
+  transition: transform 0.3s ease;
+  padding: 0 20px;
 }
 
 /* אנימציה לכניסה */
