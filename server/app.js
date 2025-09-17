@@ -53,6 +53,7 @@ import errorHandler from "./middelware/errorHandler.js"; // ✅ correct folder n
 import { configRoutes } from "./routes/configRoutes.js";
 
 import { mapSoldiers } from "./services/mapSoldires.js";
+import { decodeUserFromToken } from "./middelware/auth.js";
 config();
 
 const PORT = process.env.PORT || 3000;
@@ -67,6 +68,9 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(cookieParser());
+
+// Decode user from token on every request
+app.use(decodeUserFromToken);
 
 // Quick health check
 app.get("/healthz", (req, res) => res.json({ ok: true, time: new Date().toISOString() }));

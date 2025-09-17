@@ -1,4 +1,4 @@
-import { createAlert, getAlertById } from "../DAL/alertsDAL.js";
+import { createAlert, getAlertById, endAlert } from "../DAL/alertsDAL.js";
 import { getActiveSubscriptions, } from "../DAL/pushSubDAL.js";
 import { createJobsBatch, getAlertMetrics } from "../DAL/pushJobsDAL.js";
 
@@ -71,4 +71,17 @@ const metrics = async (req, res, next) => {
   }
 };
 
-export { activate, metrics };
+const end = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await endAlert(id);
+    return res.status(200).json({
+      message: "alert ended successfully",
+      alert: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { activate, metrics, end };

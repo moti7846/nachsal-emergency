@@ -62,4 +62,18 @@ const unsubscribe = async (req, res, next) => {
   }
 };
 
-export { subscribe, unsubscribe };
+const getVapidKey = (req, res) => {
+  const vapidPublicKey = process.env.VAPID_PUBLIC_KEY;
+  if (!vapidPublicKey) {
+    return res.status(500).json({
+      ok: false,
+      error: {
+        code: "VAPID_KEY_NOT_CONFIGURED",
+        message: "VAPID public key is not configured on the server.",
+      },
+    });
+  }
+  res.status(200).json({ vapidPublicKey });
+};
+
+export { subscribe, unsubscribe, getVapidKey };

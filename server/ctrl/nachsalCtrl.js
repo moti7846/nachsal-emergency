@@ -1,8 +1,8 @@
-import * as nahsalDAL from "../DAL/nahsalDal.js";
+import * as nachsalDAL from "../DAL/nachsalDal.js";
 
 export async function reset(req, res, next) {
   try {
-    const result = await nahsalDAL.resetReports();
+    const result = await nachsalDAL.resetReports();
     return res.status(200).json({ ok: true, data: result, time: new Date().toISOString() });
   } catch (err) {
     console.error("Error activating Nekesel:", err);

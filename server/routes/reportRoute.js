@@ -1,11 +1,11 @@
 import express from "express";
-import { checkAuth } from "../middelware/auth.js";
+import { requireAuth } from "../middelware/requireAuth.js";
 import { createReport, getDirectSoldiersWithReports, getSoldierDetails, SendNachsal } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();
 
-//בודק אם קיים טוקן תקין
-report.use(checkAuth);
+// All routes in this file require a valid token
+report.use(requireAuth);
 
 report.get("/:personalNumber", getDirectSoldiersWithReports);
 report.get("/send_nachsal/:personalNumber", SendNachsal);
