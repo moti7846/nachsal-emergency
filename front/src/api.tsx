@@ -59,11 +59,18 @@ export async function sendNechsal(personalNumber: string) {
 
 export async function alertOnApi(personalNumber: number) {
   console.log("nechsal send");
-
   const res = await fetch(`${URL}/reports/alert_on/${personalNumber}`, {
     method: "GET",
     credentials: "include",
   });
   const alert = await res.json()
   return alert;
+}
+export async function getAllSoldiersUnderCommandApi(personalNumber: number) {
+  const res = await fetch(`${URL}/reports/get_all_soldiers_under_command/${personalNumber}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const array = await res.json()
+  return array;
 }

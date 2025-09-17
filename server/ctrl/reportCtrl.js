@@ -63,10 +63,14 @@ export const getSoldierDetails = async (req, res) => {
 
 export const createReport = async (req, res) => {
   try {
-    const isTrue = await createReportDB(
-      { ...req.body, done: true },
-      req.params.personalNumber
-    );
+    const report = {
+      ...req.body,
+      created_at: `${new Date().toLocaleDateString()}  ${new Date().toLocaleTimeString()}`,
+      done: true,
+      alert_on: false
+    };
+    console.log(report);
+    const isTrue = await createReportDB(report, req.params.personalNumber);
     if (isTrue) return res.json({ msg: "√ added report" });
     else res.status(403).json({ msg: "create report failed" });
   } catch (error) {
@@ -78,9 +82,20 @@ export const createReport = async (req, res) => {
 export const isAlertOn = async (req, res) => {
   try {
     const alert = await isAlertOnTrueDB(req.params.personalNumber);
-    res.json(alert);
+    res.json(alert.alert_on);
   } catch (error) {
     console.log("is alert on error: ", error);
     res.status(500).json({ msg: "is alert on failed" });
   }
 };
+
+export const getAllSoldiersUnderCommand = async (req, res) => {
+  try {
+    const personalNumber = req.params.personalNumber;
+    const arraySoldires = await mapSoldiers(personalNumber);
+    return res.send(arraySoldires);
+  } catch (error) {
+    console.log("getAllSoldiersUnderCommand faild");
+    return res.status(500).json({ msg: "faild" });
+  }
+}

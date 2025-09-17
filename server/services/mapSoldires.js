@@ -3,7 +3,6 @@ import { getSoldiersDB } from "../DAL/soldierDAL.js";
 export async function mapSoldiers(commanderId) {
   console.log(commanderId);
   const soldiersArrray = await getSoldiersDB();
-  console.log(soldiersArrray);
   const stack = [commanderId];
   const result = [];
 
