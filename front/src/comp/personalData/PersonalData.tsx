@@ -29,7 +29,7 @@ export default function PersonalData() {
 
   useEffect(() => {
     fetchData(Number(params.personal_number));
-  }, [data]);
+  }, []);
 
     return (
         <div className="personalCard">

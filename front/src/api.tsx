@@ -47,3 +47,14 @@ export async function logout() {
   });
   return result.json();
 }
+
+export async function sendNechsal(personalNumber:string) {
+    console.log("nechsal send");
+    
+    const result = await fetch(
+        `${URL}/reports/send_nachsal/${personalNumber}`,{
+        method:"GET",
+        credentials:"include"
+    });
+    return result.json();
+}
