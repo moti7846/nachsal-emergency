@@ -12,7 +12,6 @@ const configRoutes = (app) => {
 
   // ✅ ensure the "c" is present here
   app.use("/nachsal", nachsal);
-  console.log("[routes] mounted /nachsal"); // DEBUG
 
   app.use("/push", pushRoutes);
   app.use("/alerts", alertsRoutes);

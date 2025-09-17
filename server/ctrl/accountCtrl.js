@@ -49,7 +49,6 @@ export const soldierVerification = (req, res) => {
   if (!token) return res.json(null);
   try {
     const response = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(response);
     return res.status(200).json(response);
   } catch (err) {
     console.error("Token verification failed:", err.message);

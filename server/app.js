@@ -7,7 +7,6 @@ import logger from "./middelware/logger.js";           // ✅ correct folder nam
 import errorHandler from "./middelware/errorHandler.js"; // ✅ correct folder name
 import { configRoutes } from "./routes/configRoutes.js";
 
-import { mapSoldiers } from "./services/mapSoldires.js";
 import { decodeUserFromToken } from "./middelware/auth.js";
 config();
 
