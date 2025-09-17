@@ -138,3 +138,23 @@ export async function getSubscriptionById(id) {
   if (error) throw error;
   return data ?? null;
 }
+
+export async function getSubscriptionsByPersonalNumbers(personalNumbers) {
+  if (!Array.isArray(personalNumbers) || personalNumbers.length === 0) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("push_subscriptions")
+    .select("id, personal_number, endpoint, p256dh, auth")
+    .eq("is_active", true)
+    .in("personal_number", personalNumbers);
+
+  if (error) {
+    const err = new Error(error.message);
+    err.status = 500;
+    err.code = "DB_SELECT_FAILED";
+    throw err;
+  }
+  return data ?? [];
+}

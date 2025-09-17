@@ -27,14 +27,7 @@ export const addSoldierDB = async (obj) => {
     return data;
 }
 
-// export const updateSoldierDB = async (personalNumber, password) => {    
-//     const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select();
-//     if (error) {
-//         console.log(`updateSoldierDB: ${error}`);
-//         return null;
-//     }
-//     return data;
-// }
+
 
 export const getDirectSoldiersDB = async (personalNumber) => {
     const { data, error } = await supabase.from("soldiers").select("*").eq("commander", personalNumber);        
@@ -85,4 +78,13 @@ export async function updateSoldierStatus({ soldierId, status, location }) {
     throw err;
   }
   return data ?? { id: soldierId, ...updates };
+}
+
+export const updateSoldierPasswordDB = async (personalNumber, password) => {
+    const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select();
+    if (error) {
+        console.log(`updateSoldierPasswordDB: ${error}`);
+        return null;
+    }
+    return data;
 }
