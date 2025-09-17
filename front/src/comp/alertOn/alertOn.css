@@ -1,0 +1,38 @@
+.alert-on-container {
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+.alert-on-button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.alert-on-button:hover {
+  background-color: #45a049;
+}
+
+.alert-on-progress-bar {
+  margin-top: 10px;
+  height: 20px;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.alert-on-progress-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.1s linear;
+}
+
+.alert-on-text {
+  margin-top: 5px;
+  font-size: 14px;
+}

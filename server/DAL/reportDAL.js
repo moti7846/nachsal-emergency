@@ -12,3 +12,15 @@ export const createReportDB = async (obj, personalNumber) => {
   console.log(data);
   return true;
 };
+
+export const setlAlertOnTrue = async (personalNumber) => {
+  const { data, error } = await supabase
+    .from("report")
+    .update({ alert_on: true })
+    .eq("personal_number", Number(personalNumber));
+  if (error) {
+    console.log("updateAllAlertOnTrue: ", error);
+    throw error
+  }
+  return true;
+}
