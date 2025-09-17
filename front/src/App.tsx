@@ -8,19 +8,23 @@ import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
+import {AlartContext} from "./context/AlartOnContext";
+import { alertOnApi } from "./api";
 import ChangePassword from "./Pages/changePassword/changePassword";
 
 export const URL = "http://localhost:3000";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
-  // const [password, setPassword] = useState<boolean | null>(null);
+  const [alert, setAlert] = useState<boolean >(false);
 
   const checkAuth = async () => {
     try {
       const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
+        const alertOn = await alertOnApi(data.personalNumber)
+        setAlert(alertOn)
         setSoldier(data);
       } else {
         setSoldier(null);
@@ -36,6 +40,7 @@ export default function App() {
   }, []);
   return (
     <>
+      <AlartContext.Provider value={{alert, setAlert}}>
       <AuthContext.Provider value={{ soldier, setSoldier }}>
         <TopNav />
         <Routes>

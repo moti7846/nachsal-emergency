@@ -20,7 +20,6 @@ export async function addSoldierReport({
   return result.json();
 }
 
-
 export async function getDirectSoldier(personalNumber: string) {
   const result = await fetch(`${URL}/reports/${personalNumber}`, {
     method: "GET",
@@ -48,13 +47,23 @@ export async function logout() {
   return result.json();
 }
 
-export async function sendNechsal(personalNumber:string) {
-    console.log("nechsal send");
-    
-    const result = await fetch(
-        `${URL}/reports/send_nachsal/${personalNumber}`,{
-        method:"GET",
-        credentials:"include"
-    });
-    return result.json();
+export async function sendNechsal(personalNumber: string) {
+  console.log("nechsal send");
+
+  const result = await fetch(`${URL}/reports/send_nachsal/${personalNumber}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  return result.json();
+}
+
+export async function alertOnApi(personalNumber: number) {
+  console.log("nechsal send");
+
+  const res = await fetch(`${URL}/reports/alert_on/${personalNumber}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const alert = await res.json()
+  return alert;
 }

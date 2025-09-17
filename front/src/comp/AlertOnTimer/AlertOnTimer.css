@@ -1,0 +1,16 @@
+/* טיימר כרצועה בתחתית ה-navbar */
+.alert-on-timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #fe8104 0%, #66bb6a 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 6px 0;
+  letter-spacing: 1px;
+  z-index: 20;
+  box-shadow: 0 -2px 8px rgba(2, 77, 28, 0.12);
+}
