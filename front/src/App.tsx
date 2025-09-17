@@ -10,6 +10,7 @@ import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
 import {AlartContext} from "./context/AlartOnContext";
 import { alertOnApi } from "./api";
+import ChangePassword from "./Pages/changePassword/changePassword";
 
 export const URL = "http://localhost:3000";
 
@@ -40,32 +41,32 @@ export default function App() {
   return (
     <>
       <AlartContext.Provider value={{alert, setAlert}}>
-        <AuthContext.Provider value={{ soldier, setSoldier }}>
-          <TopNav />
-          <Routes>
-            {soldier ? (
-              <>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path={`/soldier_page/:personal_number`}
-                  element={<SoldierPage />}
-                />
-                <Route
-                  path="/report_soldier_place"
-                  element={<ReportSoldierPlace />}
-                />
-                <Route path="/logout" element={<Logout />} />{" "}
-                <Route path="/login" element={<Login />} />
-              </>
-            ) : (
-              <>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-              </>
-            )}
-          </Routes>
-        </AuthContext.Provider>
-      </AlartContext.Provider>
+      <AuthContext.Provider value={{ soldier, setSoldier }}>
+        <TopNav />
+        <Routes>
+          {soldier ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route
+                path={`/soldier_page/:personal_number`}
+                element={<SoldierPage />}
+              />
+              <Route
+                path="/report_soldier_place"
+                element={<ReportSoldierPlace />}
+              />
+              <Route path="/logout" element={<Logout />} />{" "}
+              <Route path="/login" element={<Login />} />
+              <Route path="/Change_password" element={<ChangePassword />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
+        </Routes>
+      </AuthContext.Provider>
     </>
   );
 }

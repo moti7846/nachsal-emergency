@@ -35,6 +35,7 @@ export default function Login() {
           personalNumber: data.personal_number,
           name: data.name,
           role: data.role,
+          password: data.password == data.personal_number ? false : true
         });
       } else {
         setMessage("מספר אישי או סיסמה שגויים.");
@@ -54,39 +55,37 @@ export default function Login() {
   }, [auth?.soldier])
 
   return (
-    <>
-      <div className="login">
-        <h1 className="h1">ברוכים הבאים למערכת נכס"ל</h1>
-        <form className="form" onSubmit={handleSubmit}>
-          {isLoading && <span className="loader-login"></span>}
-          <h2 className="h2">התחברות</h2>
-          <input
-            className="inputLogin"
-            type="text"
-            name="personalNumber"
-            placeholder="מספר אישי"
-            value={personalNumber}
-            autoComplete="name"
-            required
-            onChange={(e) => setPersonalNumber(e.target.value)}
-          />
-          <input
-            className="inputLogin"
-            type="password"
-            name="password"
-            placeholder="סיסמא"
-            value={password}
-            autoComplete="password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <button className="btnLogin" type="submit">
-            כניסה
-          </button>
-          <p className={statusInput}>{message}</p>
-        </form>
-      </div>
-    </>
+    <div className="login">
+      <h1 className="h1">ברוכים הבאים למערכת נכס"ל</h1>
+      <form className="form" onSubmit={handleSubmit}>
+        {isLoading && <span className="loader-login"></span>}
+        <h2 className="h2">התחברות</h2>
+        <input
+          className="inputLogin"
+          type="text"
+          name="personalNumber"
+          placeholder="מספר אישי"
+          value={personalNumber}
+          autoComplete="name"
+          required
+          onChange={(e) => setPersonalNumber(e.target.value)}
+        />
+        <input
+          className="inputLogin"
+          type="password"
+          name="password"
+          placeholder="סיסמא"
+          value={password}
+          autoComplete="password"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <button className="btnLogin" type="submit">
+          כניסה
+        </button>
+        <p className={statusInput}>{message}</p>
+      </form>
+    </div>
   );
 }

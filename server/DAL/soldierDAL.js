@@ -27,14 +27,14 @@ export const addSoldierDB = async (obj) => {
     return data;
 }
 
-// export const updateSoldierDB = async (personalNumber, password) => {    
-//     const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select();
-//     if (error) {
-//         console.log(`updateSoldierDB: ${error}`);
-//         return null;
-//     }
-//     return data;
-// }
+export const updateSoldierDB = async (personalNumber, password) => {    
+    const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select().single();
+    if (error) {
+        console.log(`updateSoldierDB: ${error}`);
+        return null;
+    }
+    return data;
+}
 
 export const getDirectSoldiersDB = async (personalNumber) => {
     const { data, error } = await supabase.from("soldiers").select("*").eq("commander", personalNumber);        
