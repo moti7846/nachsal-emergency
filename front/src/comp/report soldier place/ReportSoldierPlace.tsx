@@ -17,7 +17,7 @@ export default function ReportSoldierPlace() {
     location: "",
   });
   const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
   const [waitingMsg, setWaitingMsg] = useState("");
 
   // reverse geocoding באמצעות Maps JavaScript API
@@ -49,9 +49,9 @@ export default function ReportSoldierPlace() {
     });
   };
   const getLocation = () => {
-    setErrorMsg("");
+    setMsg("");
     if (!("geolocation" in navigator)) {
-      setErrorMsg("הדפדפן לא תומך ב-Geolocation");
+      setMsg("הדפדפן לא תומך ב-Geolocation");
       return;
     }
     setLoading(true);
@@ -68,7 +68,7 @@ export default function ReportSoldierPlace() {
               location: addr || "לא נמצאה כתובת",
             }));
           } catch (e: any) {
-            setErrorMsg("שגיאה מה-Geocoder: " + String(e));
+            setMsg("שגיאה מה-Geocoder: " + String(e));
           } finally {
             setLoading(false);
           }
@@ -79,7 +79,7 @@ export default function ReportSoldierPlace() {
             2: " אין קליטת GPS נסה שוב",
             3: "תם הזמן לאיתור מיקום",
           };
-          setErrorMsg(map[err.code] || "שגיאה בקבלת מיקום");
+          setMsg(map[err.code] || "שגיאה בקבלת מיקום");
           setLoading(false);
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
@@ -90,7 +90,7 @@ export default function ReportSoldierPlace() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!auth?.soldier) {
-      setErrorMsg("לא נמצאו פרטי חייל");
+      setMsg("לא נמצאו פרטי חייל");
       return;
     }
     addSoldierReport({
@@ -99,11 +99,11 @@ export default function ReportSoldierPlace() {
       status: dataForm.status,
     })
       .then(() => {
-        setErrorMsg("");
+        setMsg("הדיווח נשלח בהצלחה");
         setDataForm({ status: "", location: "" });
       })
       .catch((err) => {
-        setErrorMsg("שגיאה בשליחת הדיווח: " + err.message);
+        setMsg("שגיאה בשליחת הדיווח: " + err.message);
       });
   };
 
@@ -163,7 +163,7 @@ export default function ReportSoldierPlace() {
 
         <button className="btn-report" type="submit">דיווח</button>
 
-        {errorMsg && <div className="error">{errorMsg}</div>}
+        {msg && <div className="error">{msg}</div>}
       </form>
     </div>
   );

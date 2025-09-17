@@ -13,14 +13,27 @@ export const createReportDB = async (obj, personalNumber) => {
   return true;
 };
 
-export const setlAlertOnTrue = async (personalNumber) => {
+export const setlAlertOnTrueDB = async (personalNumber) => {
   const { data, error } = await supabase
     .from("report")
     .update({ alert_on: true })
     .eq("personal_number", Number(personalNumber));
   if (error) {
-    console.log("updateAllAlertOnTrue: ", error);
-    throw error
+    console.log("setlAlertOnTrueDB: ", error);
+    throw error;
   }
   return true;
-}
+};
+
+export const isAlertOnTrueDB = async (personalNumber) => {
+  const { data, error } = await supabase
+    .from("report")
+    .select("alert_on")
+    .eq("personal_number", Number(personalNumber))
+    .single();
+  if (error) {
+    console.log("isAlertOnTrueDB: ", error);
+    throw error;
+  }
+  return data;
+};
