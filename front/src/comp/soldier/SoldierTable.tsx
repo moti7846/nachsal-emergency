@@ -9,13 +9,16 @@ export type Report = {
   name: string;
   location: string;
   status: string;
-  done: string;
+  done: boolean | null;
+  progress?: string;
   created_at: string;
 };
 
 export default function SoldierTable({ paramsNumber }: any) {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<Report[]>([]);
+  const [progressClass, setProgressClass] = useState("");
+  const [progress, setProgress] = useState("");
   const navigate = useNavigate();
 
   const fetchData = async (personalNumber: string | undefined) => {
@@ -24,6 +27,19 @@ export default function SoldierTable({ paramsNumber }: any) {
       responseDirectSoldiers = await getDirectSoldier(personalNumber!);
     }
     setData(responseDirectSoldiers);
+    const updatedSoldiers = await Promise.all(
+      responseDirectSoldiers.map(async (soldier: Report) => {
+        const children = await getDirectSoldier(String(soldier.personal_number));
+        const completed = children.filter((child: Report) => child.done === true).length;
+        const total = children.length;
+        if (total !== completed) {
+          setProgressClass("half-full");
+        }
+        setProgress(`${total} / ${completed}`);
+        return { ...soldier, progress: `${total} / ${completed}` };
+      })
+    );
+    setData(updatedSoldiers);
     navigate(`/soldier_page/${personalNumber}`);
   };
 
@@ -43,7 +59,7 @@ export default function SoldierTable({ paramsNumber }: any) {
                   <th>שם החייל</th>
                   <th>מיקום</th>
                   <th>מצב החייל</th>
-                  <th>בוצע</th>
+                  {progress !== "0 / 0" && <th>סטטוס</th>}
                   <th>תאריך עדכון</th>
                 </tr>
               </thead>
@@ -57,7 +73,7 @@ export default function SoldierTable({ paramsNumber }: any) {
                     <td>{report.name}</td>
                     <td>{report.location}</td>
                     <td>{report.status}</td>
-                    <td>{report.done}</td>
+                    {progress !== "0 / 0" && <td className={progressClass}>{report.progress}</td>}
                     <td>{report.created_at}</td>
                   </tr>
                 ))}
