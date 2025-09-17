@@ -8,7 +8,6 @@ import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
-import ReportPlace from "./comp/report place/ReportPlace";
 
 export const URL = "http://localhost:3000";
 
@@ -41,7 +40,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/soldier_page/:personal_number" element={<SoldierPage />} />
           <Route path="/report_soldier_place" element={<ReportSoldierPlace />}/>
-          <Route path="report_place" element={<ReportPlace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
