@@ -31,7 +31,7 @@ export default function SoldierTable() {
 
   useEffect(() => {
     fetchData(Number(params.personal_number));
-  }, [data]);
+  }, []);
 
   return (
     <>
