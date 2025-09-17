@@ -28,7 +28,6 @@ export default function PersonalData({ paramsNumber }: any) {
   useEffect(() => {
     fetchData(paramsNumber);
   }, [paramsNumber]);
-
   return (
     <div className="personalCard">
       <h3 className="personalName">{data?.name}</h3>
