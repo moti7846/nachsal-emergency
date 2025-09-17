@@ -139,7 +139,7 @@ export default function ReportSoldierPlace() {
           </label>
         </div>
 
-        <input
+        {/* <input
           className="input-local"
           type="text"
           placeholder="מיקום"
@@ -148,9 +148,19 @@ export default function ReportSoldierPlace() {
             setDataForm({ ...dataForm, location: e.target.value })
           }
           required
-        />
+        /> */}
 
-        <div className="localtion">
+        <div className="input-location-container">
+          <input
+            className="input-local"
+            type="text"
+            placeholder="מיקום"
+            value={dataForm.location}
+            onChange={(e) =>
+              setDataForm({ ...dataForm, location: e.target.value })
+            }
+            required
+          />
           <button
             className="btn-local"
             type="button"
