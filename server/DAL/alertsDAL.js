@@ -1,6 +1,3 @@
-// DAL/alertsDAL.js (ESM)
-// Purpose: data-access for 'alerts' table
-
 import supabase from "../db/connect.js";
 
 /** Create a new alert row (status defaults to 'active' in DB) */
