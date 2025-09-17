@@ -20,7 +20,6 @@ export const changePassword = async (req, res) => {
   if (!response) {
     return res.status(500).json({ msg: "Soldier not found." })
   }
-  console.log(response);
   res.json(response)
 }
 
