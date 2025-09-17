@@ -8,11 +8,13 @@ import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
+import ChangePassword from "./Pages/changePassword/changePassword";
 
 export const URL = "http://localhost:3000";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
+  // const [password, setPassword] = useState<boolean | null>(null);
 
   const checkAuth = async () => {
     try {
@@ -50,6 +52,7 @@ export default function App() {
               />
               <Route path="/logout" element={<Logout />} />{" "}
               <Route path="/login" element={<Login />} />
+              <Route path="/Change_password" element={<ChangePassword />} />
             </>
           ) : (
             <>
