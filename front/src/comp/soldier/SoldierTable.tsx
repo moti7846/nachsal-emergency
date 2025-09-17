@@ -17,6 +17,7 @@ export type Report = {
 export default function SoldierTable({ paramsNumber }: any) {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<Report[]>([]);
+  const [progressClass, setProgressClass] = useState("");
   const [progress, setProgress] = useState("");
   const navigate = useNavigate();
 
@@ -32,8 +33,9 @@ export default function SoldierTable({ paramsNumber }: any) {
         const completed = children.filter((child: Report) => child.done === true).length;
         const total = children.length;
         if (total !== completed) {
-          setProgress("half-full");
+          setProgressClass("half-full");
         }
+        setProgress(`${total} / ${completed}`);
         return { ...soldier, progress: `${total} / ${completed}` };
       })
     );
@@ -57,7 +59,7 @@ export default function SoldierTable({ paramsNumber }: any) {
                   <th>שם החייל</th>
                   <th>מיקום</th>
                   <th>מצב החייל</th>
-                  <th>מילאו</th>
+                  {progress !== "0 / 0" && <th>סטטוס</th>}
                   <th>תאריך עדכון</th>
                 </tr>
               </thead>
@@ -71,7 +73,7 @@ export default function SoldierTable({ paramsNumber }: any) {
                     <td>{report.name}</td>
                     <td>{report.location}</td>
                     <td>{report.status}</td>
-                    <td className={progress}>{report.progress}</td>
+                    {progress !== "0 / 0" && <td className={progressClass}>{report.progress}</td>}
                     <td>{report.created_at}</td>
                   </tr>
                 ))}
