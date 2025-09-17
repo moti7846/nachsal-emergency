@@ -5,7 +5,6 @@ import AlertOnButton from "./AlertOnButton";
 import "./AlertOn.css";
 
 export default function AlertOn() {
-  const [progress, setProgress] = useState(0);
   const [isRunning, setIsRunning] = useState(() => {
     // אם יש זמן התחלה בלוקאל אז הטיימר רץ
     return !!localStorage.getItem("alertOnStartTime");
@@ -33,13 +32,11 @@ export default function AlertOn() {
         localStorage.setItem("alertOnStartTime", String(Date.now()));
       }
       nechsal();
-      setProgress(0);
       startTime = Number(localStorage.getItem("alertOnStartTime"));
 
       interval = setInterval(() => {
         const elapsed = Date.now() - startTime;
         const percent = Math.min((elapsed / duration) * 100, 100);
-        setProgress(percent);
 
         if (percent >= 100) {
           clearInterval(interval);
@@ -51,16 +48,6 @@ export default function AlertOn() {
 
     return () => clearInterval(interval);
   }, [isRunning, auth?.soldier]);
-
-  //חישוב זמן שחלף גם אם עשו ריענון כי זה נשמר בלוקאל סטוראג
-  let elapsedSeconds = 0;
-  const startTimeLS = localStorage.getItem("alertOnStartTime");
-  if (startTimeLS) {
-    const elapsed = Date.now() - Number(startTimeLS);
-    elapsedSeconds = Math.min(Math.floor(elapsed / 1000), 30 * 60);
-  } else {
-    elapsedSeconds = Math.round((progress / 100) * (30 * 60));
-  }
 
   return (
     <div className="alert-on-container">

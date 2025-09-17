@@ -2,7 +2,6 @@ import { Link } from "react-router";
 import "./topNav.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import RunNachsal from "../AlertOn/AlertOn";
 import AlertOnTimer from "../AlertOnTimer/AlertOnTimer";
 export default function TopNav() {
   const auth = useContext(AuthContext);
@@ -40,7 +39,6 @@ export default function TopNav() {
             <Link to="/report_soldier_place">
               <button className="btnReport">מילוי טופס נכס"ל</button>
             </Link>
-            {auth?.soldier?.role === "commander" && <RunNachsal />}
             <div className="user-section">
               <Link to="/logout">
                 <img
