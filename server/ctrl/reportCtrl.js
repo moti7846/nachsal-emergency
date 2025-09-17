@@ -88,14 +88,3 @@ export const isAlertOn = async (req, res) => {
     res.status(500).json({ msg: "is alert on failed" });
   }
 };
-
-export const getAllSoldiersUnderCommand = async (req, res) => {
-  try {
-    const personalNumber = req.params.personalNumber;
-    const arraySoldires = await mapSoldiers(personalNumber);
-    return res.send(arraySoldires);
-  } catch (error) {
-    console.log("getAllSoldiersUnderCommand faild");
-    return res.status(500).json({ msg: "faild" });
-  }
-}

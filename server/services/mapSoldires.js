@@ -15,7 +15,7 @@ export async function mapSoldiers(commanderId) {
     result.push(...directSubs);
     stack.push(...directSubs);
   }
-  console.log("result: ", result);
+  // console.log("result: ", result);
   return result;
 }
 

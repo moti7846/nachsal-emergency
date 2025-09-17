@@ -1,6 +1,6 @@
 import "./SoldierTable.css";
 import { useContext, useEffect, useState } from "react";
-import { getAllSoldiersUnderCommandApi, getDirectSoldier } from "../../api";
+import { getDirectSoldier } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 

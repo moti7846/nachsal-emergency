@@ -66,11 +66,3 @@ export async function alertOnApi(personalNumber: number) {
   const alert = await res.json()
   return alert;
 }
-export async function getAllSoldiersUnderCommandApi(personalNumber: number) {
-  const res = await fetch(`${URL}/reports/get_all_soldiers_under_command/${personalNumber}`, {
-    method: "GET",
-    credentials: "include",
-  });
-  const array = await res.json()
-  return array;
-}
