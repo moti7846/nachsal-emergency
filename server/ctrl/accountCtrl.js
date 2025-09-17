@@ -32,7 +32,7 @@ export const login = async (req, res) => {
     if (!isValidPassword)
       return res.status(403).json({ msg: "Incorrect personal number or password" });
     const token = createToken(soldier);
-    return res.cookie("token", token, { httpOnly: true }).json(soldier);
+    return res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "None", maxAge: 1000 * 60 * 60 }).json(soldier);
   } catch (error) {
     console.log("login message error: ", error);
     return res.status(500).json({ msg: "Login failed." });
