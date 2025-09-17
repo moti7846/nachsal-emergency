@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import "./topNav.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import RunNachsal from "../alertOn/AlertOn";
 export default function TopNav() {
   const auth = useContext(AuthContext);
 
@@ -32,6 +33,7 @@ export default function TopNav() {
         ) : (
           <div className="logo-idf"></div>
         )}
+        {auth?.soldier?.role === "commander" && <RunNachsal />}
       </div>
     </>
   );

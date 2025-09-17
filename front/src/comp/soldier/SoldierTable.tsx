@@ -46,6 +46,7 @@ export default function SoldierTable({ paramsNumber }: any) {
   useEffect(() => {
     fetchData(paramsNumber);
   }, [paramsNumber]);
+
   return (
     <>
       {data.length > 0 && (
