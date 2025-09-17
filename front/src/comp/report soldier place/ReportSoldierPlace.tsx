@@ -18,6 +18,7 @@ export default function ReportSoldierPlace() {
   });
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [waitingMsg, setWaitingMsg] = useState("");
 
   // reverse geocoding באמצעות Maps JavaScript API
   const geocodeLatLng = async (lat: number, lng: number) => {
@@ -47,7 +48,6 @@ export default function ReportSoldierPlace() {
       );
     });
   };
-
   const getLocation = () => {
     setErrorMsg("");
     if (!("geolocation" in navigator)) {
@@ -55,33 +55,36 @@ export default function ReportSoldierPlace() {
       return;
     }
     setLoading(true);
-
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        try {
-          const { latitude, longitude } = pos.coords;
-          const addr = await geocodeLatLng(latitude, longitude);
-          setDataForm((prev) => ({
-            ...prev,
-            location: addr || "לא נמצאה כתובת",
-          }));
-        } catch (e: any) {
-          setErrorMsg("שגיאה מה-Geocoder: " + String(e));
-        } finally {
+    setWaitingMsg("מאתר מיקום...");
+    setTimeout(() => {
+      setWaitingMsg("");
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          try {
+            const { latitude, longitude } = pos.coords;
+            const addr = await geocodeLatLng(latitude, longitude);
+            setDataForm((prev) => ({
+              ...prev,
+              location: addr || "לא נמצאה כתובת",
+            }));
+          } catch (e: any) {
+            setErrorMsg("שגיאה מה-Geocoder: " + String(e));
+          } finally {
+            setLoading(false);
+          }
+        },
+        (err) => {
+          const map: Record<number, string> = {
+            1: "הרשאת מיקום נדחתה",
+            2: " אין קליטת GPS נסה שוב",
+            3: "תם הזמן לאיתור מיקום",
+          };
+          setErrorMsg(map[err.code] || "שגיאה בקבלת מיקום");
           setLoading(false);
-        }
-      },
-      (err) => {
-        const map: Record<number, string> = {
-          1: "הרשאת מיקום נדחתה",
-          2: "המיקום לא זמין כרגע",
-          3: "תם הזמן לאיתור מיקום",
-        };
-        setErrorMsg(map[err.code] || "שגיאה בקבלת מיקום");
-        setLoading(false);
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
-    );
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+      );
+    }, 2000);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -112,14 +115,30 @@ export default function ReportSoldierPlace() {
           <p>עדכן את מיקומך ומצבך</p>
         </div>
 
-        <input
-          className="status"
-          type="text"
-          placeholder="סטטוס"
-          value={dataForm.status}
-          onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })}
-          required
-        />
+        <div className="status-radio">
+          <label>
+            <input
+              type="radio"
+              name="status"
+              value="תקין"
+              checked={dataForm.status === "תקין"}
+              onChange={() => setDataForm({ ...dataForm, status: "תקין" })}
+              required
+            />
+            תקין
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="status"
+              value="במצוקה"
+              checked={dataForm.status === "במצוקה"}
+              onChange={() => setDataForm({ ...dataForm, status: "במצוקה" })}
+              required
+            />
+            במצוקה
+          </label>
+        </div>
 
         <input
           className="input-local"
@@ -139,7 +158,7 @@ export default function ReportSoldierPlace() {
             onClick={getLocation}
             disabled={loading}
           >
-            {loading ? "מאתר מיקום..." : "מיקום נוכחי"}
+            {loading ? waitingMsg || "מאתר מיקום..." : "מיקום נוכחי"}
           </button>
         </div>
 
