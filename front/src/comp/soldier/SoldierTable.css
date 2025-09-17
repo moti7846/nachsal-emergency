@@ -12,6 +12,11 @@
   animation: titlePulse 4s ease-in-out infinite;
 }
 
+.table-container {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
 /* מבנה הטבלה */
 .report-table {
   width: 95%;
@@ -33,6 +38,7 @@
 }
 
 .report-table th {
+  min-width: 100px;
   padding: 14px;
   font-size: 1rem;
   text-align: center;
