@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { getSoldierByIdDB, updateSoldierPasswordDB } from "../DAL/soldierDAL.js";
+import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
@@ -7,6 +7,7 @@ export const changePassword = async (req, res) => {
   if (!personalNumber || !newPassword) {
     return res.status(403).json({ msg: "You must enter a personal number and password." })
   }
+  
   const hashPassword = await createHashPassword(newPassword);
   let response;
   try {
@@ -19,7 +20,7 @@ export const changePassword = async (req, res) => {
   if (!response) {
     return res.status(500).json({ msg: "Soldier not found." })
   }
-  res.json({ msg: "The update was successful!" })
+  res.json(response)
 }
 
 export const login = async (req, res) => {
@@ -28,9 +29,9 @@ export const login = async (req, res) => {
     const soldier = await getSoldierByIdDB(personalNumber);
     if (!soldier)
       return res.status(403).json({ msg: "Personal number not found" });
-    // const isValidPassword = await checkPasswordIsTrue(password, soldier.password);
-    // if (!isValidPassword)
-    //   return res.status(403).json({ msg: "Incorrect personal number or password" });
+    const isValidPassword = await checkPasswordIsTrue(password, soldier.password);
+    if (!isValidPassword)
+      return res.status(403).json({ msg: "Incorrect personal number or password" });
     const token = createToken(soldier);
     return res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "None", maxAge: 1000 * 60 * 60 }).json(soldier);
   } catch (error) {
