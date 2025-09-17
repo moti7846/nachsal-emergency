@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { getSoldierDetails } from "../../api";
 import "./soldier.css";
 import { useParams } from "react-router";
+import "./personalData.css";
 
 export type PersonalData = {
   personal_number: number;
@@ -13,7 +14,7 @@ export type PersonalData = {
   phone: string;
 };
 
-export default function SoldierData() {
+export default function PersonalData() {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<PersonalData>();
   const params = useParams()

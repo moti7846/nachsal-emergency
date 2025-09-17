@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./home.css";
 import { useNavigate } from "react-router";
+
 export default function Home() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();

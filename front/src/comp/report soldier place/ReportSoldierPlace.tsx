@@ -1,8 +1,9 @@
 // ReportSoldierPlace.tsx
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
+import { addSoldierReport } from "../../api";
+import { AuthContext } from "../../context/AuthContext";
 import { Loader } from "@googlemaps/js-api-loader";
 import "./reportSoldierPlace.css";
-import { AuthContext } from "../../context/AuthContext";
 
 const API = "AIzaSyAt8qf1gUfAzXPOvKASVGfDM8gWnDF74dc"; // מפתח גוגל בלבד
 
@@ -10,6 +11,7 @@ type DataForm = { status: string; location: string };
 
 export default function ReportSoldierPlace() {
   const auth = useContext(AuthContext);
+  const soldierName = auth?.soldier?.name || "soldier";
   const [dataForm, setDataForm] = useState<DataForm>({
     status: "",
     location: "",
@@ -84,14 +86,29 @@ export default function ReportSoldierPlace() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //פונקציית api;
+    if (!auth?.soldier) {
+      setErrorMsg("לא נמצאו פרטי חייל");
+      return;
+    }
+    addSoldierReport({
+      personal_number: auth.soldier.personalNumber,
+      location: dataForm.location,
+      status: dataForm.status,
+    })
+      .then(() => {
+        setErrorMsg("");
+        setDataForm({ status: "", location: "" });
+      })
+      .catch((err) => {
+        setErrorMsg("שגיאה בשליחת הדיווח: " + err.message);
+      });
   };
 
   return (
     <div className="Report_soldier_place">
       <form className="form-nachsal" onSubmit={handleSubmit}>
         <div className="tile">
-          <h1>שלום {auth?.soldier?.name}</h1>
+          <h1>שלום {soldierName}</h1>
           <p>עדכן את מיקומך ומצבך</p>
         </div>
 
