@@ -21,7 +21,7 @@ export async function addSoldierReport({
 }
 
 
-export async function getDirectSoldier(personalNumber: number) {
+export async function getDirectSoldier(personalNumber: string) {
   const result = await fetch(`${URL}/reports/${personalNumber}`, {
     method: "GET",
     credentials: "include",
@@ -29,7 +29,7 @@ export async function getDirectSoldier(personalNumber: number) {
   return result.json();
 }
 
-export async function getSoldierDetails(personalNumber: number) {
+export async function getSoldierDetails(personalNumber: string) {
   const result = await fetch(
     `${URL}/reports/soldierDetails/${personalNumber}`,
     {

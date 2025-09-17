@@ -16,7 +16,7 @@ export default function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });      
+      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setSoldier(data);
@@ -37,11 +37,26 @@ export default function App() {
       <AuthContext.Provider value={{ soldier, setSoldier }}>
         <TopNav />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/soldier_page/:personal_number" element={<SoldierPage />} />
-          <Route path="/report_soldier_place" element={<ReportSoldierPlace />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
+          {soldier ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route
+                path={`/soldier_page/:personal_number`}
+                element={<SoldierPage />}
+              />
+              <Route
+                path="/report_soldier_place"
+                element={<ReportSoldierPlace />}
+              />
+              <Route path="/logout" element={<Logout />} />{" "}
+              <Route path="/login" element={<Login />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
         </Routes>
       </AuthContext.Provider>
     </>
