@@ -10,6 +10,8 @@ export default function Home() {
   useEffect(() => {
     if (!auth?.soldier?.name) {
       navigate("/login");
+    } else if (!auth.soldier.password) {
+      navigate("change_password");
     } else {
       navigate(`/soldier_page/${auth.soldier.personalNumber}`);
     }
