@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
+import { getSoldierByIdDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
