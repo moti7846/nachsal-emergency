@@ -4,11 +4,11 @@ import Login from "./Pages/login/Login";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
-import Soldier_page from "./Pages/Soldier_page";
-import CommanderPage from "./Pages/commander page/CommanderPage";
-import ReportPlace from "./comp/report place/ReportPlace";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
+import Logout from "./Pages/logout/Logout";
+import SoldierPage from "./Pages/soldier/SoldierPage";
+import ChangePassword from "./Pages/changePassword/changePassword";
 
 export const URL = "http://localhost:3000";
 
@@ -20,6 +20,7 @@ export default function App() {
       const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
+        
         setSoldier(data);
       } else {
         setSoldier(null);
@@ -38,12 +39,27 @@ export default function App() {
       <AuthContext.Provider value={{ soldier, setSoldier }}>
         <TopNav />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/report_soldier_place" element={<ReportSoldierPlace />} />
-          <Route path="/commander" element={<CommanderPage />} />
-          <Route path="report_place" element={<ReportPlace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/soldier_page" element={<Soldier_page />} />
+          {soldier ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route
+                path={`/soldier_page/:personal_number`}
+                element={<SoldierPage />}
+              />
+              <Route
+                path="/report_soldier_place"
+                element={<ReportSoldierPlace />}
+              />
+              <Route path="/logout" element={<Logout />} />{" "}
+              <Route path="/login" element={<Login />} />
+              <Route path="/Change_password" element={<ChangePassword />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
         </Routes>
       </AuthContext.Provider>
     </>

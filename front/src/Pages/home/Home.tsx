@@ -1,17 +1,21 @@
-import { useContext } from "react";
-import Report_place from "../../comp/report place/ReportPlace";
-import Comoned_page from "../commander page/CommanderPage";
-import Login from "../login/Login";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import "./home.css";
+import { useNavigate } from "react-router";
 
 export default function Home() {
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  return (
-    <main>
-      {!auth?.soldier?.name && <Login />}
-      {auth?.soldier?.name && auth?.soldier?.role === "commander" && <Comoned_page />}
-      {auth?.soldier?.name && auth?.soldier?.role === "soldier" && <Report_place />}
-    </main>
-  );
+  useEffect(() => {
+    if (!auth?.soldier?.name) {
+      navigate("/login");
+    } else if (auth?.soldier?.name && !auth.soldier.password) {
+      navigate("change_password");
+    } else {
+      navigate(`/soldier_page/${auth.soldier.personalNumber}`);
+    }
+  }, [auth, navigate]);
+
+  return <main></main>;
 }

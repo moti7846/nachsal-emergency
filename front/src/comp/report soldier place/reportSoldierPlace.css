@@ -1,33 +1,86 @@
-.Report_soldier_place{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.Report_soldier_place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  min-height: 80vh;
+  background: var(--color-bright);
+  position: relative;
+  overflow: hidden;
 }
 
-.form-nachsal{
-    width: 40%;
-    height: 60%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+.Report_soldier_place::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(2, 77, 28, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(21, 163, 58, 0.1) 0%, transparent 40%);
+  animation: floatingGreen 25s ease-in-out infinite;
+  z-index: -1;
+  
 }
 
-.localtion{
-    width: 100%;
-    height: 10%;
-    background-color: gray;
-    display: flex;
-    justify-content: center;
+.form-nachsal {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  max-width: 500px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-heavy);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
 }
 
-.btn-local{
-    width: 30%;
-    height: 100%;
-    background-color: red;
+.form-nachsal .tile h1 {
+  font-size: 1.8rem;
+  color: var(--color-dark);
+  margin-bottom: 5px;
 }
-.btn-local:hover{
-    cursor: pointer;
-    background-color: rgb(255, 46, 46);
+
+.form-nachsal .tile p {
+  font-size: 1rem;
+  color: red;
+  font-weight: 600;
+  animation: titlePulse 2s ease-in-out infinite;
+}
+
+.input-local, .status {
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.8);
+  transition: var(--transition);
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-local:focus, .status:focus {
+  border-color: var(--color-dark);
+  box-shadow: 0 0 10px rgba(2,77,28,0.2);
+}
+
+.btn-local, .btn-report {
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-local:hover, .btn-report:hover {
+  filter: brightness(1.1);
+}
+
+.error {
+  color: var(--error-gradient);
+  font-weight: 600;
+  animation: shake 0.5s ease-in-out;
 }

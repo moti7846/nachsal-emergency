@@ -1,0 +1,112 @@
+/* כותרת הטבלה */
+.table-header {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 15px rgba(2, 77, 28, 0.3);
+  animation: titlePulse 4s ease-in-out infinite;
+}
+
+.table-container {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+/* מבנה הטבלה */
+.report-table {
+  width: 95%;
+  margin: 0 auto 40px;
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+/* שורת כותרת */
+.report-table thead {
+  background: var(--primary-gradient);
+  color: var(--color-bright);
+}
+
+.report-table th {
+  min-width: 100px;
+  padding: 14px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* שורות הטבלה */
+.report-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-dark);
+  border-bottom: 1px solid rgba(2, 77, 28, 0.15);
+  transition: var(--transition);
+}
+
+/* עמודת בוצע */
+td.half-full {
+  color: red;
+}
+
+/* אפקט hover על שורה */
+.report-table tbody tr {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.report-table tbody tr:hover {
+  background: rgba(229, 255, 223, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(2, 77, 28, 0.2);
+}
+
+/* שורה זוגית לקבל מראה מפוספס */
+.report-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .report-table th,
+  .report-table td {
+    padding: 10px 6px;
+    font-size: 0.85rem;
+  }
+
+  .table-header {
+    font-size: 1.4rem;
+    margin: 20px 0;
+  }
+}
+
+@media (min-width: 769px) {
+    .table-container {
+        padding: 20px;
+    }
+
+    .table-container h2 {
+        font-size: 20px;
+    }
+
+    .report-table {
+        font-size: 16px;
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 12px 15px;
+    }
+}

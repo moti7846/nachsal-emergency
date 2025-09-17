@@ -28,7 +28,7 @@ export const addSoldierDB = async (obj) => {
 }
 
 export const updateSoldierDB = async (personalNumber, password) => {    
-    const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select();
+    const { data, error } = await supabase.from("soldiers").update({ password }).eq("personal_number", personalNumber).select().single();
     if (error) {
         console.log(`updateSoldierDB: ${error}`);
         return null;
