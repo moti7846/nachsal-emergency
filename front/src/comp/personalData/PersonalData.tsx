@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getSoldierDetails } from "../../api";
 import "./personalData.css";
-import { useParams } from "react-router";
 import "./personalData.css";
 
 export type PersonalData = {
@@ -14,31 +13,30 @@ export type PersonalData = {
   phone: string;
 };
 
-export default function PersonalData() {
+export default function PersonalData({ paramsNumber }: any) {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<PersonalData>();
-  const params = useParams()
 
-  const fetchData = async (personalNumber: number | undefined) => {
+  const fetchData = async (paramsNumber: string | undefined) => {
     let response;
     if (auth?.soldier) {
-      response = await getSoldierDetails(personalNumber!);
+      response = await getSoldierDetails(paramsNumber!);
     }
     setData(response);
   };
 
   useEffect(() => {
-    fetchData(Number(params.personal_number));
-  }, []);
+    fetchData(paramsNumber);
+  }, [paramsNumber]);
 
-    return (
-        <div className="personalCard">
-            <h3 className="personalName">{data?.name}</h3>
-            <p><b>מספר אישי:</b> {data?.personal_number}</p>
-            <p><b>תפקיד:</b> {data?.role}</p>
-            <p><b>מפקד ישיר:</b> {data?.commander}</p>
-            <p><b>כתובת:</b> {data?.address}</p>
-            <p><b>טלפון:</b> {data?.phone}</p>
-        </div>
-    )
+  return (
+    <div className="personalCard">
+      <h3 className="personalName">{data?.name}</h3>
+      <p><b>מספר אישי:</b> {data?.personal_number}</p>
+      <p><b>תפקיד:</b> {data?.role}</p>
+      <p><b>מפקד ישיר:</b> {data?.commander}</p>
+      <p><b>כתובת:</b> {data?.address}</p>
+      <p><b>טלפון:</b> {data?.phone}</p>
+    </div>
+  );
 }

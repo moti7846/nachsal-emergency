@@ -1,3 +1,35 @@
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.user-section .account-img {
+  background: none;
+  box-shadow: none;
+  margin-bottom: 2px;
+  margin-top: 5px;
+}
+
+.user-section p {
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-bright);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
 .nav-top {
   height: 70px;
   display: flex;
@@ -75,5 +107,20 @@
 
   .logo-idf {
     width: 45px;
+  }
+  
+
+
+  .nav-actions {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .user-section {
+    padding: 4px 8px;
+    font-size: 0.10rem;
+  }
+  .btnReport {
+    padding: 6px 12px;
+    font-size: 0.95rem;
   }
 }

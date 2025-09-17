@@ -2,7 +2,7 @@ import "./SoldierTable.css";
 import { useContext, useEffect, useState } from "react";
 import { getDirectSoldier } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 export type Report = {
   personal_number: number;
@@ -14,25 +14,21 @@ export type Report = {
   created_at: string;
 };
 
-export default function SoldierTable() {
+export default function SoldierTable({ paramsNumber }: any) {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<Report[]>([]);
   const [progress, setProgress] = useState("");
   const navigate = useNavigate();
-  const params = useParams()
 
-  const fetchData = async (personalNumber: number | undefined) => {
-    await navigate(`/soldier_page/${personalNumber}`)
-
+  const fetchData = async (personalNumber: string | undefined) => {
     let responseDirectSoldiers;
     if (auth?.soldier) {
       responseDirectSoldiers = await getDirectSoldier(personalNumber!);
     }
     setData(responseDirectSoldiers);
-
     const updatedSoldiers = await Promise.all(
       responseDirectSoldiers.map(async (soldier: Report) => {
-        const children = await getDirectSoldier(soldier.personal_number);
+        const children = await getDirectSoldier(String(soldier.personal_number));
         const completed = children.filter((child: Report) => child.done === true).length;
         const total = children.length;
         if (total !== completed) {
@@ -42,17 +38,17 @@ export default function SoldierTable() {
       })
     );
     setData(updatedSoldiers);
+    navigate(`/soldier_page/${personalNumber}`);
   };
 
   useEffect(() => {
-    fetchData(Number(params.personal_number));
-  }, []);
-
+    fetchData(paramsNumber);
+  }, [paramsNumber]);
   return (
     <>
       {data.length > 0 && (
         <div>
-          <h2 className="table-header">דו"ח נכס"ל</h2>
+          <h2 className="table-header">דו"ח חיילים</h2>
           <div className="table-container">
             <table className="report-table">
               <thead>
@@ -69,7 +65,7 @@ export default function SoldierTable() {
                 {data.map((report) => (
                   <tr
                     key={report.personal_number}
-                    onClick={() => fetchData(report.personal_number)}
+                    onClick={() => fetchData(String(report.personal_number))}
                   >
                     <td>{report.personal_number}</td>
                     <td>{report.name}</td>
