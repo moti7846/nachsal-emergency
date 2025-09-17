@@ -9,7 +9,7 @@ import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
 
-export const URL = "http://localhost:3000";
+export const URL = "https://nachsal-emergency.onrender.com/";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
