@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getSoldierDetails } from "../../api";
-import "./soldier.css";
+import "./personalData.css";
 import { useParams } from "react-router";
 import "./personalData.css";
 
