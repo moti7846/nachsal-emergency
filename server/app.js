@@ -16,12 +16,14 @@ const app = express();
 
 app.use(express.json());
 app.use(logger);
-app.use(cors({
-  credentials: true,
+app.use(
+  cors({
+    credentials: true,
     origin: ["http://localhost:5173", "http://localhost:5174", "https://n-achsal-emergency-test.netlify.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(cookieParser());
 
 // Decode user from token on every request

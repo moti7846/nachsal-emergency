@@ -56,6 +56,11 @@
   transition: var(--transition);
 }
 
+/* עמודת בוצע */
+td.half-full {
+  color: red;
+}
+
 /* אפקט hover על שורה */
 .report-table tbody tr {
   cursor: pointer;
