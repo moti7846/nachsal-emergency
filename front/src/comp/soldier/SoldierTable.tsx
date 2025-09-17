@@ -2,7 +2,7 @@ import "./SoldierTable.css";
 import { useContext, useEffect, useState } from "react";
 import { getDirectSoldier } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 export type Report = {
   personal_number: number;
@@ -13,60 +13,58 @@ export type Report = {
   created_at: string;
 };
 
-export default function SoldierTable() {
+export default function SoldierTable({ paramsNumber }: any) {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<Report[]>([]);
   const navigate = useNavigate();
-  const params = useParams()
 
-  const fetchData = async (personalNumber: number | undefined) => {
-    await navigate(`/soldier_page/${personalNumber}`)
-
+  const fetchData = async (personalNumber: string | undefined) => {
     let responseDirectSoldiers;
     if (auth?.soldier) {
       responseDirectSoldiers = await getDirectSoldier(personalNumber!);
     }
     setData(responseDirectSoldiers);
+    navigate(`/soldier_page/${personalNumber}`);
   };
 
   useEffect(() => {
-    fetchData(Number(params.personal_number));
-  }, [data]);
+    fetchData(paramsNumber);
+  }, [paramsNumber]);
 
   return (
     <>
       {data.length > 0 && (
         <div>
-          <h2 className="table-header">דו"ח נכס"ל</h2>
+          <h2 className="table-header">דו"ח חיילים</h2>
           <div className="table-container">
-          <table className="report-table">
-            <thead>
-              <tr>
-                <th>מ.א</th>
-                <th>שם החייל</th>
-                <th>מיקום</th>
-                <th>מצב החייל</th>
-                <th>בוצע</th>
-                <th>תאריך עדכון</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((report) => (
-                <tr
-                  key={report.personal_number}
-                  onClick={() => fetchData(report.personal_number)}
-                >
-                  <td>{report.personal_number}</td>
-                  <td>{report.name}</td>
-                  <td>{report.location}</td>
-                  <td>{report.status}</td>
-                  <td>{report.done}</td>
-                  <td>{report.created_at}</td>
+            <table className="report-table">
+              <thead>
+                <tr>
+                  <th>מ.א</th>
+                  <th>שם החייל</th>
+                  <th>מיקום</th>
+                  <th>מצב החייל</th>
+                  <th>בוצע</th>
+                  <th>תאריך עדכון</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {data.map((report) => (
+                  <tr
+                    key={report.personal_number}
+                    onClick={() => fetchData(String(report.personal_number))}
+                  >
+                    <td>{report.personal_number}</td>
+                    <td>{report.name}</td>
+                    <td>{report.location}</td>
+                    <td>{report.status}</td>
+                    <td>{report.done}</td>
+                    <td>{report.created_at}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </>

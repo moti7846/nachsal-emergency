@@ -11,8 +11,6 @@ export default function Logout() {
         e.preventDefault();
         try {
             const response = await logout();
-            console.log(response);
-
             if (response) {
                 auth?.setSoldier(null);
                 setTimeout(() => {
