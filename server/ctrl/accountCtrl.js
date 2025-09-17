@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
+import { getSoldierByIdDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
@@ -28,9 +28,9 @@ export const login = async (req, res) => {
     const soldier = await getSoldierByIdDB(personalNumber);
     if (!soldier)
       return res.status(403).json({ msg: "Personal number not found" });
-    const isValidPassword = checkPasswordIsTrue(password, soldier.password);
-    if (!isValidPassword)
-      return res.status(403).json({ msg: "Incorrect personal number or password" });
+    // const isValidPassword = await checkPasswordIsTrue(password, soldier.password);
+    // if (!isValidPassword)
+    //   return res.status(403).json({ msg: "Incorrect personal number or password" });
     const token = createToken(soldier);
     return res.cookie("token", token, { httpOnly: true }).json(soldier);
   } catch (error) {

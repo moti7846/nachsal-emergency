@@ -1,6 +1,6 @@
 import express from "express";
 import { checkAuth } from "../middelware/auth.js";
-import { getDirectSoldiersWithReports, getSoldierDetails, SendNachsal } from "../ctrl/reportCtrl.js";
+import { createReport, getDirectSoldiersWithReports, getSoldierDetails, SendNachsal } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();
 
@@ -10,5 +10,6 @@ report.use(checkAuth);
 report.get("/:personalNumber", getDirectSoldiersWithReports);
 report.get("/send_nachsal/:personalNumber", SendNachsal);
 report.get("/soldierDetails/:personalNumber", getSoldierDetails);
+report.post("/add_report/:personalNumber", createReport)
 
 export default report;
