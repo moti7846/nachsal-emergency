@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { getDirectSoldier } from "../../api";
-import "./soldier.css";
+import {  getSoldierDetails } from "../../api";
+import "./personalData.css";
 
 export type PersonalData = {
   personal_number: number;
@@ -12,21 +12,21 @@ export type PersonalData = {
   phone: string;
 };
 
-export default function SoldierData() {
+export default function PersonalData() {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<PersonalData>();
 
-  const fetchData = async () => {
+  const fetchData = async (personalNumber: number | undefined) => {
     let response;
     if (auth?.soldier) {
-      response = await getDirectSoldier(auth?.soldier?.personalNumber);
+      response = await getSoldierDetails(personalNumber!);
     }
     setData(response);
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(auth?.soldier?.personalNumber);
+  },[]);
 
     return (
         <div className="personalCard">

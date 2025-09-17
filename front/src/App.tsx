@@ -4,9 +4,6 @@ import Login from "./Pages/login/Login";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
-import ReportPlace from "./comp/report place/ReportPlace";
-// import Soldier_page from "./Pages/Soldier_page";
-import CommanderPage from "./Pages/soldier/SoldierPage";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
@@ -46,10 +43,6 @@ export default function App() {
             path="/report_soldier_place"
             element={<ReportSoldierPlace />}
           />
-          <Route path="report_place" element={<ReportPlace />} />
-          <Route path="/report_soldier_place" element={<ReportSoldierPlace />} />
-          <Route path="/commander" element={<CommanderPage />} />
-          <Route path="report_place" element={<ReportSoldierPlace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           {/* <Route path="/soldier_page" element={<Soldier_page />} /> */}

@@ -10,8 +10,12 @@ export default function Home() {
   return (
     <main>
       {!auth?.soldier?.name && <Login />}
-      {auth?.soldier?.name && auth?.soldier?.role === "commander" && <SoldierPage />}
-      {auth?.soldier?.name && auth?.soldier?.role === "soldier" && <ReportSoldierPlace />}
+      {auth?.soldier?.name && auth?.soldier?.role === "commander" && (
+        <SoldierPage />
+      )}
+      {auth?.soldier?.name && auth?.soldier?.role === "soldier" && (
+        <ReportSoldierPlace/>
+      )}
     </main>
   );
 }

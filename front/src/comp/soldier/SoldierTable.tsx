@@ -26,6 +26,7 @@ export default function SoldierTable() {
 
   useEffect(() => {
     fetchData(auth?.soldier?.personalNumber);
+    
   }, []);
 
   return (
