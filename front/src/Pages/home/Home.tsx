@@ -6,21 +6,14 @@ import { useNavigate } from "react-router";
 export default function Home() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (!auth?.soldier?.name) {
       navigate("/login");
-    }
-    else if (auth?.soldier?.name && auth?.soldier?.role === "commander") {
-      navigate(`/soldier_page/${auth.soldier.personalNumber}`)
-    }
-    else if (auth?.soldier?.name && auth?.soldier?.role === "soldier") {
-      navigate("/report_place")
+    } else {
+      navigate(`/soldier_page/${auth.soldier.personalNumber}`);
     }
   }, [auth, navigate]);
 
-  return (
-    <main>
-    </main>
-  );
+  return <main></main>;
 }
