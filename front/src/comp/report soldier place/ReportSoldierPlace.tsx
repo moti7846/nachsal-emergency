@@ -1,13 +1,15 @@
 // ReportSoldierPlace.tsx
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import "./reportSoldierPlace.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const API = "AIzaSyAt8qf1gUfAzXPOvKASVGfDM8gWnDF74dc"; // מפתח גוגל בלבד
 
 type DataForm = { status: string; location: string };
 
 export default function ReportSoldierPlace() {
+  const auth = useContext(AuthContext);
   const [dataForm, setDataForm] = useState<DataForm>({
     status: "",
     location: "",
@@ -89,44 +91,20 @@ export default function ReportSoldierPlace() {
     <div className="Report_soldier_place">
       <form className="form-nachsal" onSubmit={handleSubmit}>
         <div className="tile">
-          <h1>שלום -שם חייל-</h1>
+          <h1>שלום {auth?.soldier?.name}</h1>
           <p>עדכן את מיקומך ומצבך</p>
         </div>
 
-        <input
-          className="status"
-          type="text"
-          placeholder="סטטוס"
-          value={dataForm.status}
-          onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })}
-          required
-        />
-
-        <input
-          className="input-local"
-          type="text"
-          placeholder="מיקום"
-          value={dataForm.location}
-          onChange={(e) =>
-            setDataForm({ ...dataForm, location: e.target.value })
-          }
-          required
-        />
+        <input className="status" type="text" placeholder="סטטוס" value={dataForm.status} onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })} required />
+        <input className="input-local" type="text" placeholder="מיקום" value={dataForm.location} onChange={(e) => setDataForm({ ...dataForm, location: e.target.value })} required />
 
         <div className="localtion">
-          <button
-            className="btn-local"
-            type="button"
-            onClick={getLocation}
-            disabled={loading}
-          >
+          <button className="btn-local" type="button" onClick={getLocation} disabled={loading} >
             {loading ? "מאתר מיקום..." : "מיקום נוכחי"}
           </button>
         </div>
 
-        <button className="btn-report" type="submit">
-          דיווח
-        </button>
+        <button className="btn-report" type="submit">דיווח</button>
 
         {errorMsg && <div className="error">{errorMsg}</div>}
       </form>

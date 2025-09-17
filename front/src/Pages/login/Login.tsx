@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./login.css";
 import { URL } from "../../App";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -10,6 +11,7 @@ export default function Login() {
   const [message, setMessage] = useState("");
   const [statusInput, setStatusInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,6 +46,12 @@ export default function Login() {
       setStatusInput("errorLogin");
     }
   }
+
+  useEffect(() => {
+    if (auth?.soldier?.name) {
+      navigate("/");
+    }
+  }, [auth?.soldier])
 
   return (
     <>

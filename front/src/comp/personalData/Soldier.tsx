@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getSoldierDetails } from "../../api";
 import "./soldier.css";
+import { useParams } from "react-router";
 
 export type PersonalData = {
   personal_number: number;
@@ -15,18 +16,19 @@ export type PersonalData = {
 export default function SoldierData() {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<PersonalData>();
+  const params = useParams()
 
-  const fetchData = async () => {
+  const fetchData = async (personalNumber: number | undefined) => {
     let response;
     if (auth?.soldier) {
-      response = await getSoldierDetails(auth?.soldier?.personalNumber);
+      response = await getSoldierDetails(personalNumber!);
     }
     setData(response);
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(Number(params.personal_number));
+  }, [data]);
 
   return (
     <div className="personalCard">

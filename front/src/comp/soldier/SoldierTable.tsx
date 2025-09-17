@@ -2,6 +2,7 @@ import "./table.css";
 import { useContext, useEffect, useState } from "react";
 import { getDirectSoldier } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate, useParams } from "react-router";
 
 export type Report = {
   personal_number: number;
@@ -15,8 +16,12 @@ export type Report = {
 export default function SoldierTable() {
   const auth = useContext(AuthContext);
   const [data, setData] = useState<Report[]>([]);
+  const navigate = useNavigate();
+  const params = useParams()
 
   const fetchData = async (personalNumber: number | undefined) => {
+    await navigate(`/soldier_page/${personalNumber}`)
+
     let responseDirectSoldiers;
     if (auth?.soldier) {
       responseDirectSoldiers = await getDirectSoldier(personalNumber!);
@@ -25,8 +30,8 @@ export default function SoldierTable() {
   };
 
   useEffect(() => {
-    fetchData(auth?.soldier?.personalNumber);
-  }, []);
+    fetchData(Number(params.personal_number));
+  }, [data]);
 
   return (
     <>
