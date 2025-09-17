@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import RunNachsal from "../AlertOn/AlertOn";
 import AlertOnTimer from "../AlertOnTimer/AlertOnTimer";
+
 export default function TopNav() {
   const auth = useContext(AuthContext);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);

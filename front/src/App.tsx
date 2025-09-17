@@ -17,14 +17,16 @@ export const URL = "http://localhost:3000";
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
-
+  let idInterval: number;
   const checkAuth = async () => {
     try {
       const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
-        const alertOn = await alertOnApi(data.personalNumber);
-        setAlert(alertOn);
+        idInterval = setInterval(async () => {
+          const alertOn = await alertOnApi(data.personalNumber);
+          setAlert(alertOn);
+        }, 120 * 1000);
         setSoldier(data);
       } else {
         setSoldier(null);
@@ -37,6 +39,7 @@ export default function App() {
 
   useEffect(() => {
     checkAuth();
+    return () => clearInterval(idInterval);
   }, []);
   return (
     <>
