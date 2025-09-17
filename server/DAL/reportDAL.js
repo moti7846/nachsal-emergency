@@ -9,7 +9,6 @@ export const createReportDB = async (obj, personalNumber) => {
     console.log("insertReportDB: ", error);
     return false;
   }
-  console.log(data);
   return true;
 };
 

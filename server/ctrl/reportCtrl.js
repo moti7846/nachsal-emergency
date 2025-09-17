@@ -78,7 +78,6 @@ export const createReport = async (req, res) => {
 export const isAlertOn = async (req, res) => {
   try {
     const alert = await isAlertOnTrueDB(req.params.personalNumber);
-    console.log(alert);
     res.json(alert);
   } catch (error) {
     console.log("is alert on error: ", error);
