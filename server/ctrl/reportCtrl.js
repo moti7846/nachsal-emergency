@@ -29,7 +29,6 @@ export const getDirectSoldiersWithReports = async (req, res) => {
 export const SendNachsal = async (req, res) => {
     try {
         const arraySoldires = await mapSoldiers(req.params.personalNumber);
-        // arraySoldires.forEach(async soldier => await setlAlertOnTrue(soldier))
          for (const soldier of arraySoldires) {
             await setlAlertOnTrue(soldier);
         }
