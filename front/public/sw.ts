@@ -1,4 +1,5 @@
 export {}; // Treat this file as a module.
+declare const clients: Clients;
 
 // Explicitly declare the service worker global scope.
 declare let self: ServiceWorkerGlobalScope;
@@ -60,4 +61,9 @@ self.addEventListener('notificationclick', (event: NotificationEvent) => {
   });
 
   event.waitUntil(promiseChain);
+});
+
+self.addEventListener('notificationclose', (event: NotificationEvent) => {
+  console.log('[Service Worker] Notification closed:', event.notification.title);
+  // You could send this to an analytics service or log it more persistently
 });
