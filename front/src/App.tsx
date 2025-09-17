@@ -7,6 +7,8 @@ import { AuthContext, type Soldier } from "./context/AuthContext";
 import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
+import SoldierPage from "./Pages/soldier/SoldierPage";
+import ReportPlace from "./comp/report place/ReportPlace";
 
 export const URL = "http://localhost:3000";
 
@@ -15,7 +17,7 @@ export default function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
+      const res = await fetch(`${URL}/auth/me`, { credentials: "include" });      
       if (res.ok) {
         const data = await res.json();
         setSoldier(data);
@@ -33,19 +35,15 @@ export default function App() {
   }, []);
   return (
     <>
-      <AuthContext.Provider
-        value={{ soldier: soldier!, setSoldier: setSoldier }}
-      >
+      <AuthContext.Provider value={{ soldier, setSoldier }}>
         <TopNav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/report_soldier_place"
-            element={<ReportSoldierPlace />}
-          />
+          <Route path="/soldier_page/:personal_number" element={<SoldierPage />} />
+          <Route path="/report_soldier_place" element={<ReportSoldierPlace />}/>
+          <Route path="report_place" element={<ReportPlace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          {/* <Route path="/soldier_page" element={<Soldier_page />} /> */}
         </Routes>
       </AuthContext.Provider>
     </>

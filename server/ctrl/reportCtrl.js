@@ -1,8 +1,5 @@
+import { getDirectSoldiersDB, getDirectSoldiersWithReportsDB, getSoldierByIdDB } from "../DAL/soldierDAL.js";
 import { createReportDB } from "../DAL/reportDAL.js";
-import {
-  getDirectSoldiersDB,
-  getDirectSoldiersWithReportsDB,
-} from "../DAL/soldierDAL.js";
 import { mapSoldiers } from "../services/mapSoldires.js";
 
 export const getDirectSoldiers = async (req, res) => {

@@ -112,40 +112,16 @@ export default function ReportSoldierPlace() {
           <p>עדכן את מיקומך ומצבך</p>
         </div>
 
-        <input
-          className="status"
-          type="text"
-          placeholder="סטטוס"
-          value={dataForm.status}
-          onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })}
-          required
-        />
-
-        <input
-          className="input-local"
-          type="text"
-          placeholder="מיקום"
-          value={dataForm.location}
-          onChange={(e) =>
-            setDataForm({ ...dataForm, location: e.target.value })
-          }
-          required
-        />
+        <input className="status" type="text" placeholder="סטטוס" value={dataForm.status} onChange={(e) => setDataForm({ ...dataForm, status: e.target.value })} required />
+        <input className="input-local" type="text" placeholder="מיקום" value={dataForm.location} onChange={(e) => setDataForm({ ...dataForm, location: e.target.value })} required />
 
         <div className="localtion">
-          <button
-            className="btn-local"
-            type="button"
-            onClick={getLocation}
-            disabled={loading}
-          >
+          <button className="btn-local" type="button" onClick={getLocation} disabled={loading} >
             {loading ? "מאתר מיקום..." : "מיקום נוכחי"}
           </button>
         </div>
 
-        <button className="btn-report" type="submit">
-          דיווח
-        </button>
+        <button className="btn-report" type="submit">דיווח</button>
 
         {errorMsg && <div className="error">{errorMsg}</div>}
       </form>
