@@ -65,7 +65,7 @@ export default function SoldierTable({ paramsNumber }: any) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((report) => (
+                {data.filter((report) => String(report.personal_number) !== paramsNumber).map((report) => (
                   <tr
                     key={report.personal_number}
                     onClick={() => fetchData(String(report.personal_number))}

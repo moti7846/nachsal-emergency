@@ -14,13 +14,13 @@ export const URL = "http://localhost:3000";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
-  // const [password, setPassword] = useState<boolean | null>(null);
 
   const checkAuth = async () => {
     try {
       const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
+        
         setSoldier(data);
       } else {
         setSoldier(null);
