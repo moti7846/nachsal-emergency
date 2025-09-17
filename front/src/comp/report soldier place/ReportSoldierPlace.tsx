@@ -114,7 +114,6 @@ export default function ReportSoldierPlace() {
           <h1>שלום {soldierName}</h1>
           <p>עדכן את מיקומך ומצבך</p>
         </div>
-
         <div className="status-radio">
           <label>
             <input
@@ -162,9 +161,7 @@ export default function ReportSoldierPlace() {
           </button>
         </div>
 
-        <button className="btn-report" type="submit">
-          דיווח
-        </button>
+        <button className="btn-report" type="submit">דיווח</button>
 
         {errorMsg && <div className="error">{errorMsg}</div>}
       </form>

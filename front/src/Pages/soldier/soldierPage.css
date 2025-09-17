@@ -1,3 +1,7 @@
+main {
+  display: flex;
+  flex-direction: column
+}
 /* Container for report links */
 .ReportsLinks {
   display: flex;
@@ -58,9 +62,5 @@
     gap: 15px;
   }
 
-  .btnReport {
-    width: 80%;
-    padding: 12px 20px;
-    font-size: 0.95rem;
-  }
+
 }
