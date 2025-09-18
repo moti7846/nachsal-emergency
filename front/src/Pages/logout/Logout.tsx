@@ -11,7 +11,7 @@ export default function Logout() {
         e.preventDefault();
         try {
             const response = await logout();
-            if (response) {
+            if (response.ok) {
                 auth?.setSoldier(null);
                 setTimeout(() => {
                     navigate('/');
