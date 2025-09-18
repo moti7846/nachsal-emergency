@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { sendNechsal } from "../../api";
 import { AuthContext } from "../../context/AuthContext";
 import AlertOnButton from "./AlertOnButton";
-import "./AlertOn.css";
+import "./alertOn.css";
 
 export default function AlertOn() {
   const [isRunning, setIsRunning] = useState(() => {
