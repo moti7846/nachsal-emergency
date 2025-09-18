@@ -32,13 +32,10 @@ export default function ChangePassword() {
             setIsLoading(false);
             if (data.personal_number) {
                 setStatusInput("goodLogin");
-                setMessage("התחברת בהצלחה!");
-
-                auth?.setSoldier({
-                    personalNumber: data.personal_number,
-                    name: data.name,
-                    role: data.role,
-                });
+                setMessage("הסיסמא שונתה בהצלחה!");
+                setTimeout(() => {
+                    navigate("/")
+                }, 1000)
             } else {
                 setMessage("סיסמא שגויה");
                 setStatusInput("errorLogin");
@@ -49,12 +46,6 @@ export default function ChangePassword() {
             setStatusInput("errorLogin");
         }
     }
-
-    useEffect(() => {
-        if (auth?.soldier?.name) {
-            navigate("/");
-        }
-    }, [auth?.soldier?.name])
 
     return (
         <div className="login">
