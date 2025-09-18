@@ -16,7 +16,7 @@ export default function AlertOn() {
   const nechsal = async () => {
     if (!auth?.soldier?.personalNumber) return;
     try {
-      const res = await sendNechsal(String(auth.soldier.personalNumber));
+      const res = await sendNechsal();
       console.log("Nachsal sent:", res);
     } catch (err) {
       console.error("Error sending nechsal:", err);

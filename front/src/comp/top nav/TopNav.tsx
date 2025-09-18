@@ -2,8 +2,8 @@ import { Link } from "react-router";
 import "./topNav.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { AlartContext } from "../../context/AlartOnContext";
 import RunNachsal from "../alertOn/AlertOn";
+import { AlartContext } from "../../context/AlartOnContext";
 import AlertOnTimer from "../AlertOnTimer/AlertOnTimer";
 
 export default function TopNav() {
@@ -55,17 +55,17 @@ export default function TopNav() {
             <Link to="/report_soldier_place">
               <button className="btnReport">מילוי טופס נכס"ל</button>
             </Link>
-            {auth?.soldier?.role === "commander" && <RunNachsal />}
+            {auth?.soldier?.role === "commander" && <div className="start-nachsal"><RunNachsal /></div>}
             <div className="user-section">
               <Link to="/logout">
                 <img
                   className="account-img"
                   title="התנתק"
-                  src="user-logout.png"
+                  src="account.png"
                   alt="התנתקות"
                 />
+                <p>{auth.soldier.name}</p>
               </Link>
-              <p>{auth.soldier.name}</p>
             </div>
             {auth?.soldier?.role === "commander" &&
               localStorage.getItem("alertOnStartTime") && (
