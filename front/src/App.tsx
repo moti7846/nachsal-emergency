@@ -12,8 +12,8 @@ import { AlartContext } from "./context/AlartOnContext";
 import { alertOnApi } from "./api";
 import ChangePassword from "./Pages/changePassword/ChangePassword";
 
-// export const URL = "https://nachsal-emergency.onrender.com";
-export const URL = "https://nachsal-emergency-fdsj.onrender.com";
+export const URL = "https://nachsal-emergency.onrender.com";
+// export const URL = "https://nachsal-emergency-fdsj.onrender.com";
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
