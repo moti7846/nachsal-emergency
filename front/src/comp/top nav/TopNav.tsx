@@ -3,7 +3,7 @@ import "./topNav.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { AlartContext } from "../../context/AlartOnContext";
-import RunNachsal from "../AlertOn/AlertOn";
+import RunNachsal from "../alertOn/AlertOn";
 import AlertOnTimer from "../AlertOnTimer/AlertOnTimer";
 
 export default function TopNav() {
