@@ -67,7 +67,7 @@
   min-height: 75px;
 }
 
-/* לוגו */
+/* לוגו - Container */
 .logo-idf {
   height: 80px;
   display: flex;
@@ -82,19 +82,6 @@
 
 .logo-idf:hover {
   transform: scale(1.5);
-}
-
-/* סיסמה/כותרת */
-.logo-idf {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(229, 255, 223, 0.6));
-  transition: transform 0.3s ease;
-  margin: 0 8px 0 0;
-  align-self: center;
-  position: relative;
-  z-index: 101;
 }
 
 .btnReport {
@@ -117,15 +104,6 @@
   box-shadow: 0 4px 16px rgba(67, 160, 71, 0.18);
 }
 
-.user-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-}
 .user-section .account-img {
   background: none;
   box-shadow: none;
@@ -152,9 +130,8 @@
   text-shadow: 0 2px 8px rgba(2, 77, 28, 0.12);
 }
 
+/* לוגו - Image */
 .logo-idf {
-  width: 55px;
-  height: auto;
   width: 60px;
   height: 60px;
   object-fit: contain;
@@ -208,86 +185,96 @@
   }
 }
 
-@media (max-width: 600px) {
-  .nav-top {
-    height: 64px;
-    padding: 0 8px;
-    font-size: 0.95rem;
-  }
-  .slogen-idf {
-    font-size: 1rem;
-    margin: 0 6px;
-  }
-  .logo-idf {
-    width: 38px;
-    padding: 0 6px;
-  }
-  .nav-actions {
-    gap: 10px;
-  }
-  .btnReport {
-    font-size: 0.85rem;
-    padding: 6px 10px;
-  }
-
-  .alert-on-btn {
-    padding: 5px 10px;
-    background: linear-gradient(90deg, #43a047 0%, #66bb6a 100%);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(67, 160, 71, 0.12);
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    margin: 0 6px;
-    min-width: 70px;
-    max-width: 110px;
-  }
-  .alert-on-btn:hover {
-    background: linear-gradient(90deg, #388e3c 0%, #43a047 100%);
-    box-shadow: 0 4px 16px rgba(67, 160, 71, 0.18);
-  }
-}
-
-@media (max-width: 600px) {
-  .logo-idf {
-    width: 32px;
-    height: 32px;
-    margin: 0 4px 0 0;
-  }
-  .user-section .account-img {
-    width: 22px;
-    height: 22px;
-  }
-}
-/* רספונסיביות */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .nav-top {
     height: auto;
     padding: 10px;
-    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .slogen-idf {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    margin: 0 10px;
   }
 
   .logo-idf {
-    width: 45px;
+    width: 50px;
+    height: 50px;
+    margin: 0 8px 0 0;
+  }
+
+  .nav-actions {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .user-section {
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .user-section .account-img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .btnReport {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    min-width: unset;
+    max-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-top {
+    flex-direction: column;
+    padding: 10px 5px;
+    height: auto;
+  }
+
+  .slogen-idf {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  .logo-idf {
+    width: 40px;
+    height: 40px;
+    margin: 0;
   }
 
   .nav-actions {
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
+    margin-top: 10px;
   }
+
   .user-section {
-    padding: 4px 8px;
-    font-size: 0.1rem;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
   }
+
+  .user-section .account-img {
+    width: 20px;
+    height: 20px;
+  }
+
   .btnReport {
-    padding: 6px 12px;
-    font-size: 0.95rem;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .alert-on-btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
   }
 }
