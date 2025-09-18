@@ -27,7 +27,6 @@ export default function ChangePassword() {
             });
 
             const data = await res.json();
-            console.log(data);
 
             setIsLoading(false);
             if (data.personal_number) {
