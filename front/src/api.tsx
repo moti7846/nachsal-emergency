@@ -47,10 +47,10 @@ export async function logout() {
   return result.json();
 }
 
-export async function sendNechsal(personalNumber: string) {
+export async function sendNechsal() {
   console.log("nechsal send");
 
-  const result = await fetch(`${URL}/reports/send_nachsal/${personalNumber}`, {
+  const result = await fetch(`${URL}/reports/send_nachsal`, {
     method: "GET",
     credentials: "include",
   });
