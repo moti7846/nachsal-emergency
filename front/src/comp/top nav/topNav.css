@@ -1,5 +1,6 @@
 .nav-top {
   position: relative;
+  text-align: center;
 }
 
 .nav-progress-bar {
@@ -13,11 +14,13 @@
   overflow: hidden;
   z-index: 100;
 }
+
 .nav-progress-bar .alert-on-progress-fill {
   background: linear-gradient(90deg, #388e3c 0%, #66bb6a 100%);
   height: 100%;
   transition: width 0.1s linear;
 }
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -32,22 +35,17 @@
   background: none;
   border: none;
   box-shadow: none;
-  padding: 0;
 }
 
 .user-section .account-img {
   background: none;
   box-shadow: none;
-  margin-bottom: 2px;
-  margin-top: 5px;
 }
 
 .user-section p {
-  margin: 0;
   font-weight: 500;
   color: var(--color-bright);
-  font-size: 1rem;
-  letter-spacing: 0.5px;
+  font-size: 0.9rem;
 }
 
 .nav-top {
@@ -99,9 +97,31 @@
   min-width: 70px;
   max-width: 110px;
 }
+
 .btnReport:hover {
   background: linear-gradient(90deg, #388e3c 0%, #43a047 100%);
   box-shadow: 0 4px 16px rgba(67, 160, 71, 0.18);
+}
+
+
+.user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  transition: 400ms;
+}
+
+.user-section:hover {
+  transition: 400ms;
+  transform: scale(1.15);
+}
+
+.user-section a {
+  text-decoration-line: none;
 }
 
 .user-section .account-img {
@@ -113,6 +133,7 @@
   height: 28px;
   object-fit: cover;
 }
+
 .user-section p {
   margin: 0;
   font-weight: 500;
@@ -142,6 +163,7 @@
   position: relative;
   z-index: 101;
 }
+
 .logo-idf:hover {
   transform: scale(1.15);
 }
@@ -158,6 +180,7 @@
   z-index: 100;
   box-shadow: 0 2px 8px rgba(2, 77, 28, 0.1);
 }
+
 .nav-progress-bar .alert-on-progress-fill {
   background: linear-gradient(90deg, #388e3c 0%, #66bb6a 100%);
   height: 100%;
@@ -179,6 +202,7 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -230,6 +254,7 @@
     max-width: unset;
   }
 }
+
 
 @media (max-width: 480px) {
   .nav-top {
