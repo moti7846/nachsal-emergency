@@ -35,7 +35,7 @@ export default function Login() {
           personalNumber: data.personal_number,
           name: data.name,
           role: data.role,
-          password: data.password == data.personal_number ? false : true
+          // password: data.password == data.personal_number ? false : true
         });
         // auth?.setPassword(data.password == data.personal_number ? false : true)
       } else {

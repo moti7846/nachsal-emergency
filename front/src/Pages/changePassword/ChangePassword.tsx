@@ -38,7 +38,7 @@ export default function ChangePassword() {
                     personalNumber: data.personal_number,
                     name: data.name,
                     role: data.role,
-                    password: data.password == data.personal_number ? false : true
+                    // password: data.password == data.personal_number ? false : true
                 });
                 // auth?.setPassword(data.password == data.personal_number ? false : true)
             } else {
@@ -53,14 +53,14 @@ export default function ChangePassword() {
     }
 
     useEffect(() => {
-        if (auth?.soldier?.password) {
+        if (auth?.soldier?.name) {
             navigate("/");
         }
-    }, [auth?.soldier?.password])
+    }, [auth?.soldier?.name])
 
     return (
         <div className="login">
-            <h1 className="h1">ברוכים הבאים למערכת נכס"ל</h1>
+            {/* <h1 className="h1">ברוכים הבאים למערכת נכס"ל</h1> */}
             <form className="form" onSubmit={handleSubmit}>
                 {isLoading && <span className="loader-login"></span>}
                 <h2 className="h2">שינוי סיסמא</h2>
