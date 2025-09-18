@@ -44,7 +44,7 @@ export async function logout() {
     method: "GET",
     credentials: "include",
   });
-  return result.json();
+  return result;
 }
 
 export async function sendNechsal() {
