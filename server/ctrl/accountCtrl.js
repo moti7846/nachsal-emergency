@@ -41,7 +41,7 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("token").json({ msg: "Logged out" });
+  res.cookie("token"," ").json({ msg: "Logged out" });
 };
 
 export const soldierVerification = (req, res) => {
