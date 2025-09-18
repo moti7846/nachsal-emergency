@@ -61,7 +61,7 @@ export default function TopNav() {
                 <img
                   className="account-img"
                   title="התנתק"
-                  src="user-logout.png"
+                  src="/user-logout.png"
                   alt="התנתקות"
                 />
               </Link>

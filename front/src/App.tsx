@@ -23,10 +23,12 @@ export default function App() {
       const res = await fetch(`${URL}/auth/me`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
+        let alertOn = await alertOnApi(data.personalNumber);
+        setAlert(alertOn);
         idInterval = setInterval(async () => {
-          const alertOn = await alertOnApi(data.personalNumber);
+          alertOn = await alertOnApi(data.personalNumber);
           setAlert(alertOn);
-        }, 120 * 1000);
+        }, 60 * 1000);
         setSoldier(data);
       } else {
         setSoldier(null);
@@ -68,6 +70,7 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
               </>
             )}
+            <Route path="*" element={<Home />} />
           </Routes>
         </AuthContext.Provider>
       </AlartContext.Provider>
