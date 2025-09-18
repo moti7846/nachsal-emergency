@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { update } from "../ctrl/statusCtrl.js";
-import { requireAuth } from "../middelware/requireAuth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 
 const status = Router();
 

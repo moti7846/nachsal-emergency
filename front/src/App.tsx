@@ -4,16 +4,15 @@ import Login from "./Pages/login/Login";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { AuthContext, type Soldier } from "./context/AuthContext";
-import ReportSoldierPlace from "./comp/report soldier place/ReportSoldierPlace";
+import ReportSoldierPlace from "./comp/ReportSoldierPlace/ReportSoldierPlace";
 import TopNav from "./comp/top nav/TopNav";
 import Logout from "./Pages/logout/Logout";
 import SoldierPage from "./Pages/soldier/SoldierPage";
-import { AlartContext } from "./context/AlartOnContext";
+import { AlertContext } from "./context/AlertOnContext";
 import { alertOnApi } from "./api";
 import ChangePassword from "./Pages/changePassword/ChangePassword";
 
-export const URL = "https://nachsal-emergency.onrender.com";
-// export const URL = "https://nachsal-emergency-fdsj.onrender.com";
+export const URL = import.meta.env.VITE_API_URL;
 
 export default function App() {
   const [soldier, setSoldier] = useState<Soldier | null>(null);
@@ -41,7 +40,7 @@ export default function App() {
   }, []);
   return (
     <>
-      <AlartContext.Provider value={{ alert, setAlert }}>
+      <AlertContext.Provider value={{ alert, setAlert }}>
         <AuthContext.Provider value={{ soldier, setSoldier }}>
           <TopNav />
           <Routes>
@@ -58,7 +57,7 @@ export default function App() {
                 />
                 <Route path="/logout" element={<Logout />} />{" "}
                 <Route path="/login" element={<Login />} />
-                <Route path="/Change_password" element={<ChangePassword />} />
+                <Route path="/change-password" element={<ChangePassword />} />
               </>
             ) : (
               <>
@@ -68,7 +67,7 @@ export default function App() {
             )}
           </Routes>
         </AuthContext.Provider>
-      </AlartContext.Provider>
+      </AlertContext.Provider>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { subscribe, unsubscribe, getVapidKey } from "../ctrl/pushCtrl.js";
-import { requireAuth } from "../middelware/requireAuth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 
 const push = Router();
 

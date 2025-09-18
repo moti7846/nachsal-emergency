@@ -6,9 +6,9 @@ import {
 import {
   createReportDB,
   isAlertOnTrueDB,
-  setlAlertOnTrueDB,
+  setAlertOnTrueDB,
 } from "../DAL/reportDAL.js";
-import { mapSoldiers } from "../services/mapSoldires.js";
+import { mapSoldiers } from "../services/mapSoldiers.js";
 
 export const getDirectSoldiers = async (req, res) => {
   const personalNumber = req.params.personalNumber;
@@ -39,13 +39,13 @@ export const SendNachsal = async (req, res) => {
     const personalNumber = req.params.personalNumber;
     const arraySoldires = await mapSoldiers(personalNumber);
     for (const soldier of [personalNumber, ...arraySoldires]) {
-      await setlAlertOnTrueDB(soldier);
+      await setAlertOnTrueDB(soldier);
     }
 
-    return res.json({ msg: "sucss" });
+    return res.json({ msg: "success" });
   } catch (error) {
-    console.log("SendNachsal faild");
-    return res.status(500).json({ msg: "faild" });
+    console.log("SendNachsal failed");
+    return res.status(500).json({ msg: "failed" });
   }
 };
 
@@ -67,7 +67,7 @@ export const createReport = async (req, res) => {
       { ...req.body, done: true },
       req.params.personalNumber
     );
-    if (isTrue) return res.json({ msg: "√ added report" });
+    if (isTrue) return res.json({ msg: "Report added successfully" });
     else res.status(403).json({ msg: "create report failed" });
   } catch (error) {
     console.log("create Report error: ", error);

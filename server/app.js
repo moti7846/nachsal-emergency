@@ -3,11 +3,11 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
-import logger from "./middelware/logger.js";           // ✅ correct folder name
-import errorHandler from "./middelware/errorHandler.js"; // ✅ correct folder name
+import logger from "./middleware/logger.js";
+import errorHandler from "./middleware/errorHandler.js";
 import { configRoutes } from "./routes/configRoutes.js";
 
-import { decodeUserFromToken } from "./middelware/auth.js";
+import { decodeUserFromToken } from "./middleware/auth.js";
 config();
 
 const PORT = process.env.PORT || 3000;

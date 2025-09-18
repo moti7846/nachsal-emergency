@@ -1,5 +1,5 @@
 import express from "express";
-import { requireAuth } from "../middelware/requireAuth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 import { createReport, getDirectSoldiersWithReports, getSoldierDetails, isAlertOn, SendNachsal } from "../ctrl/reportCtrl.js";
 
 const report = express.Router();

@@ -3,9 +3,9 @@ import SoldierTable from "../../comp/soldier/SoldierTable";
 import PersonalData from "../../comp/personalData/PersonalData";
 import { useParams } from "react-router";
 import { useContext } from "react";
-import { AlartContext } from "../../context/AlartOnContext";
+import { AlertContext } from "../../context/AlertOnContext";
 export default function SoldierPage() {
-  const {alert} = useContext(AlartContext)!
+  const {alert} = useContext(AlertContext)!
   console.log(alert)
   const params = useParams();
   

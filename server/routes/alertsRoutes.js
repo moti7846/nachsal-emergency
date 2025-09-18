@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { activate, metrics, end, activateSelective } from "../ctrl/alertsCtrl.js";
-import { requireAuth } from "../middelware/requireAuth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 
 const alert = Router();
 

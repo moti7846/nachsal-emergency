@@ -12,7 +12,7 @@ export const createReportDB = async (obj, personalNumber) => {
   return true;
 };
 
-export const setlAlertOnTrueDB = async (personalNumber) => {
+export const setAlertOnTrueDB = async (personalNumber) => {
   const { data, error } = await supabase
     .from("report")
     .update({ alert_on: true })

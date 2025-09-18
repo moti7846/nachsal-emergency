@@ -5,4 +5,4 @@ type AlertType = {
   setAlert: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export  const AlartContext = createContext<AlertType | null>(null);
+export const AlertContext = createContext<AlertType | null>(null);

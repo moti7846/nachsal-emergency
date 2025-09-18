@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { getSoldierByIdDB, updateSoldierDB } from "../DAL/soldierDAL.js";
+import { getSoldierByIdDB, updateSoldierPasswordDB } from "../DAL/soldierDAL.js";
 import { checkPasswordIsTrue, createHashPassword, createToken } from "../services/loginService.js";
 
 export const changePassword = async (req, res) => {
@@ -33,7 +33,9 @@ export const login = async (req, res) => {
     if (!isValidPassword)
       return res.status(403).json({ msg: "Incorrect personal number or password" });
     const token = createToken(soldier);
-    return res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "None", maxAge: 1000 * 60 * 60 }).json(soldier);
+    // In a production environment, you should use secure: true and sameSite: "None".
+    // For development, we use secure: false and sameSite: "Lax" to allow cookies over HTTP.
+    return res.cookie("token", token, { httpOnly: true, secure: false, sameSite: "Lax", maxAge: 1000 * 60 * 60 }).json(soldier);
   } catch (error) {
     console.log("login message error: ", error);
     return res.status(500).json({ msg: "Login failed." });
