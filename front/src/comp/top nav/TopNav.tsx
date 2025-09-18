@@ -3,9 +3,13 @@ import "./topNav.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import RunNachsal from "../alertOn/AlertOn";
+import { AlartContext } from "../../context/AlartOnContext";
+
 import AlertOnTimer from "../AlertOnTimer/AlertOnTimer";
+
 export default function TopNav() {
   const auth = useContext(AuthContext);
+  const alart = useContext(AlartContext);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [progress, setProgress] = useState(0);
   const duration = 30 * 60 * 1000;
@@ -30,7 +34,19 @@ export default function TopNav() {
 
   return (
     <>
-      <div className="nav-top">
+      <div
+        className="nav-top"
+        style={
+          alart?.alert
+            ? {
+                background: "linear-gradient(90deg, #770703ff 0%, #fc0202ff 100%)",
+              }
+            : {
+                background:
+                  "linear-gradient(90deg, #2e7d32 0%, #388e3c 100%)",
+              }
+        }
+      >
         <Link to={"/"}>
           <img src="/IDF.png" alt="לוגו של צהל" className="logo-idf" />
         </Link>

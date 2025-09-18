@@ -9,6 +9,7 @@ import {
   setlAlertOnTrueDB,
 } from "../DAL/reportDAL.js";
 import { mapSoldiers } from "../services/mapSoldires.js";
+import { getDataFromToken } from "../services/getDataFromToken.js";
 
 export const getDirectSoldiers = async (req, res) => {
   const personalNumber = req.params.personalNumber;
@@ -36,7 +37,7 @@ export const getDirectSoldiersWithReports = async (req, res) => {
 
 export const SendNachsal = async (req, res) => {
   try {
-    const personalNumber = req.params.personalNumber;
+    const {personalNumber} = getDataFromToken(req)
     const arraySoldires = await mapSoldiers(personalNumber);
     for (const soldier of [personalNumber, ...arraySoldires]) {
       await setlAlertOnTrueDB(soldier);
@@ -44,7 +45,7 @@ export const SendNachsal = async (req, res) => {
 
     return res.json({ msg: "sucss" });
   } catch (error) {
-    console.log("SendNachsal faild");
+    console.log("SendNachsal faild",error);
     return res.status(500).json({ msg: "faild" });
   }
 };
@@ -63,10 +64,14 @@ export const getSoldierDetails = async (req, res) => {
 
 export const createReport = async (req, res) => {
   try {
-    const isTrue = await createReportDB(
-      { ...req.body, done: true },
-      req.params.personalNumber
-    );
+    const report = {
+      ...req.body,
+      created_at: `${new Date().toLocaleDateString()}  ${new Date().toLocaleTimeString()}`,
+      done: true,
+      alert_on: false
+    };
+    console.log(report);
+    const isTrue = await createReportDB(report, req.params.personalNumber);
     if (isTrue) return res.json({ msg: "√ added report" });
     else res.status(403).json({ msg: "create report failed" });
   } catch (error) {
@@ -78,7 +83,8 @@ export const createReport = async (req, res) => {
 export const isAlertOn = async (req, res) => {
   try {
     const alert = await isAlertOnTrueDB(req.params.personalNumber);
-    res.json(alert);
+    console.log(alert);
+    res.json(alert.alert_on);
   } catch (error) {
     console.log("is alert on error: ", error);
     res.status(500).json({ msg: "is alert on failed" });

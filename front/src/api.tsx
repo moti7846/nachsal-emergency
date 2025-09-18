@@ -47,10 +47,10 @@ export async function logout() {
   return result.json();
 }
 
-export async function sendNechsal(personalNumber: string) {
+export async function sendNechsal() {
   console.log("nechsal send");
 
-  const result = await fetch(`${URL}/reports/send_nachsal/${personalNumber}`, {
+  const result = await fetch(`${URL}/reports/send_nachsal`, {
     method: "GET",
     credentials: "include",
   });
@@ -59,7 +59,6 @@ export async function sendNechsal(personalNumber: string) {
 
 export async function alertOnApi(personalNumber: number) {
   console.log("nechsal send");
-
   const res = await fetch(`${URL}/reports/alert_on/${personalNumber}`, {
     method: "GET",
     credentials: "include",
