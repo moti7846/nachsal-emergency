@@ -28,7 +28,7 @@ export default function App() {
         idInterval = setInterval(async () => {
           alertOn = await alertOnApi(data.personalNumber);
           setAlert(alertOn);
-        }, 3000);
+        }, 10000);
         setSoldier(data);
       } else {
         setSoldier(null);
