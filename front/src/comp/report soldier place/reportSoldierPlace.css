@@ -1,33 +1,164 @@
-.Report_soldier_place{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Container כללי */
+.Report_soldier_place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 80vh;
+  background: var(--color-bright);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-nachsal{
-    width: 40%;
-    height: 60%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+/* רקע עם אפקטים רכים */
+.Report_soldier_place::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(2, 77, 28, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(21, 163, 58, 0.08) 0%, transparent 40%);
+  animation: floatingGreen 30s ease-in-out infinite;
+  z-index: -1;
 }
 
-.localtion{
-    width: 100%;
-    height: 10%;
-    background-color: gray;
-    display: flex;
-    justify-content: center;
+/* טופס */
+.form-nachsal {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px 25px;
+  max-width: 480px;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-local{
-    width: 30%;
-    height: 100%;
-    background-color: red;
+.form-nachsal:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
-.btn-local:hover{
-    cursor: pointer;
-    background-color: rgb(255, 46, 46);
+
+/* כותרת */
+.form-nachsal .tile h1 {
+  font-size: 2rem;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+
+.form-nachsal .tile p {
+  font-size: 1.25rem;
+  color: red;
+  font-weight: bold;
+  /* text-shadow: 10px red; */
+  animation: titlePulse 2s ease-in-out infinite alternate;
+}
+
+/* רדיוסו של שדות הקלט */
+.input-local, .status-radio input[type="radio"] {
+  padding: 12px 55px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.9);
+  transition: 0.3s ease;
+  outline: none;
+  font-size: 1rem;
+  text-align: start;
+}
+
+.input-local:focus {
+  border-color: var(--color-dark);
+  box-shadow: 0 0 12px rgba(2,77,28,0.25);
+}
+
+/* קונטיינר למיקום + כפתור */
+.input-location-container {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-local {
+  padding: 12px 25px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background: red;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.btn-report {
+  padding: 12px 25px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-local:hover, .btn-report:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+/* סטטוס רדיו */
+.status-radio {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.status-radio label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-dark);
+}
+
+.status-radio input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+}
+
+/* הודעות שגיאה */
+.error {
+  color: var(--error-gradient);
+  font-weight: 600;
+  font-size: 0.95rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+/* אנימציות */
+@keyframes floatingGreen {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(15px, -10px); }
+}
+
+@keyframes titlePulse {
+  0% { opacity: 0.85; }
+  100% { opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
 }

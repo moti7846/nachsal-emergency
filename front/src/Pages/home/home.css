@@ -1,0 +1,43 @@
+/* Main container */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bright);
+  position: relative;
+  /* overflow: hidden; */
+  animation: pageFadeIn 0.8s ease-in-out;
+}
+
+/* Decorative floating particles (similar to login page) */
+main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(2, 77, 28, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(21, 163, 58, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 40% 40%, rgba(13, 122, 46, 0.1) 0%, transparent 40%);
+  z-index: -1;
+  animation: floatingGreen 25s ease-in-out infinite;
+}
+
+/* Smooth fade in */
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+    align-items: flex-start;
+  }
+}

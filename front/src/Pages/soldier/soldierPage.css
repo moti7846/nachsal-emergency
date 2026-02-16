@@ -1,0 +1,20 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+/* Container for report links */
+.ReportsLinks {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px auto;
+  flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ReportsLinks {
+    align-items: center;
+    gap: 15px;
+  }
+}
